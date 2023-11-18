@@ -35,10 +35,9 @@ const Login = () => {
 
       // Store the token in local storage
       //   localStorage.setItem("jwt", token);
+
       localStorage.setItem("isAuthenticated", true);
-        // document.cookie = `jwt=${token}; path=/Edify; secure; HttpOnly`;
-        // console.log(document.cookie);
-      // document.cookie = `jwt=${token}; path=/; domain=localhost;`;
+      document.cookie = `jwt=` + token;
 
       navigate("/Edify");
     } catch (error) {
@@ -56,7 +55,7 @@ const Login = () => {
 
       {/* right */}
       <div className="flex flex-col justify-center w-[55vw] px-32 mr-[8vw] ">
-        <div className="text-5xl text-black text-center mb-6 font-mono">
+        <div className="text-5xl text-black text-center mb-10 font-roboto">
           Login
         </div>
         <div className="text-2xl text-black mr-32">This is my Email</div>
@@ -83,7 +82,7 @@ const Login = () => {
         <br />
         <button
           onClick={handleSubmit}
-          className="bg-black rounded-lg h-12 text-white mb-4"
+          className="bg-[#211b3e] rounded-lg h-12 text-white my-6"
         >
           Login
         </button>

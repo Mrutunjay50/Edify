@@ -45,9 +45,9 @@ const Navbar = () => {
           : "-translate-y-full transition transform ease-in-out duration-300"
       } fixed z-20 h-[14vh] w-full top-0 flex flex-col font-semibold justify-around hover:scale-100`}
     >
-        <div className={`${showMenu ? "h-[7.8vh] " : "h-[10vh]"} duration-300 bg-white group-hover:border-b-[0.5] group-hover:border-white group-hover:text-white transition-all ease-in-out group-hover:bg-[#141414] relative flex flex-row justify-between items-center`}>
+        <div className={`${showMenu ? "h-[7.8vh] " : "h-[10vh]"} duration-300 bg-white border-b-2 border-[#838383] group-hover:border-white group-hover:text-white transition-all ease-in-out group-hover:bg-[#211b3e] relative flex flex-row justify-between items-center`}>
         <div className="text-2xl ml-10 transition-all hover:scale-100 font-playpen font-medium">
-          <Link to="/Edify" className="bg-gradient-to-r from-zinc-600 to-violet-800 bg-clip-text text-transparent">Edify</Link>
+          <Link to="/Edify" className="bg-gradient-to-r from-[#6a94fd] to-[#7018fd] bg-clip-text text-transparent">Edify</Link>
         </div>
         {userData ? (
           <div className=" font-mono flex justify-end items-center gap-[2.4rem] ml-[56%] mr-10 font-playpen">
@@ -90,7 +90,7 @@ const Navbar = () => {
           </div>
         )}
         </div>
-        <div className={`${showMenu ? "h-[6.2vh] group-hover:bg-black border-t-2 group-hover:text-white bg-white" : "h-[4vh]"}  transition-all ease-in-out flex flex-row items-center justify-center gap-[2.5rem]`}>
+        <div className={`${showMenu ? "h-[6.2vh] group-hover:bg-[#211b3e] group-hover:text-white bg-white" : "h-[4vh]"}  transition-all duration-300 ease-in-out flex flex-row items-center justify-center gap-[2.5rem]`}>
         {showMenu && 
         <>
         <div className="text-md cursor-pointer transition-all hover:scale-105 -ml-10">

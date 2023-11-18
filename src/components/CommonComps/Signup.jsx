@@ -163,14 +163,14 @@ const Signup = () => {
         ></input>
         <button
           onClick={handleSubmit}
-          className="bg-black rounded-lg h-12 text-white"
+          className="bg-[#211b3e] rounded-lg h-12 text-white"
         >
           Register
         </button>
-        <h1 className="text-black/60 text-center text-lg font-sans">
+        <h1 className="text-black/60 text-center text-lg font-sans group cursor-pointer">
           Already a member!?
-          <span className="cursor-pointer text-black/60 text-lg font-sans">
-            <Link to="/Edify/login"> Login</Link>
+          <span className="cursor-pointer text-black/60 text-lg font-sans group-hover:text-blue-500 group-hover:underline">
+            <Link to="/Edify/login" > Login</Link>
           </span>
         </h1>
       </div>
