@@ -22,6 +22,7 @@ const Login = () => {
       handleSubmit();
     }
   };
+
   const handleSubmit = async (event) => {
     const { email, password } = login;
     try {
@@ -43,6 +44,7 @@ const Login = () => {
     } catch (error) {
       console.log("Unable to login:", error);
     }
+    
   };
 
 
