@@ -36,8 +36,9 @@ const Login = () => {
       // Store the token in local storage
       //   localStorage.setItem("jwt", token);
       localStorage.setItem("isAuthenticated", true);
-      //   document.cookie = `jwt=${token}; path=/; secure; HttpOnly`;
-      document.cookie = `jwt=${token}; path=/; domain=localhost;`;
+        document.cookie = `jwt=${token}; path=/Edify; secure; HttpOnly`;
+        console.log(document.cookie);
+      // document.cookie = `jwt=${token}; path=/Edify; domain=localhost;`;
 
       navigate("/Edify");
     } catch (error) {
