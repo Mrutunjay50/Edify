@@ -1,15 +1,24 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Tube from "./Youtube";
-import { TextField } from "@mui/material/";
 import { useAuth } from "../CommonComps/LoginContext";
 import LastSeen from "../ProfileComponent/LastSeen";
 import MyPDFComponent from "./MyPDF";
+import axios from "axios";
 
-const CollegeCourse = ({college, subject, testForm, Accordion, setClickedTube, isOpen, setIsOpen, toggleAccordion, handleVideoComplete }) => {
-  const { userData } = useAuth();
+const CollegeCourse = ({
+  college,
+  subject,
+  testForm,
+  Accordion,
+  setClickedTube,
+  isOpen,
+  setIsOpen,
+  toggleAccordion,
+  handleVideoComplete,
+}) => {
+  const { userData, tokenId , setUserData} = useAuth();
   const [completedItems, setCompletedItems] = useState(undefined);
   const [recentItems, setRecentItems] = useState(undefined);
-  
 
   useEffect(() => {
     setCompletedItems(userData?.completedItems);
@@ -18,8 +27,25 @@ const CollegeCourse = ({college, subject, testForm, Accordion, setClickedTube, i
     // console.log(recentItems);
   }, [userData]);
 
-
-  
+  const handleClick = async (incrementValue) => {
+    try {
+      // Make a POST request to your backend route to update action scores
+      const response = await axios.post("http://localhost:8800/updateActionScores",{
+        userId: userData._id,
+        incrementVal : incrementValue
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${tokenId}`,
+        },
+      });
+      const {user} = response.data;
+      setUserData(user)
+    } catch (error) {
+      console.error("Error updating action scores:", error);
+      // Handle error response if needed
+    }
+  };
 
   function extractVideoId(url) {
     // Regular expression pattern to match YouTube video IDs
@@ -53,29 +79,29 @@ const CollegeCourse = ({college, subject, testForm, Accordion, setClickedTube, i
               key={index}
               className="flex-[5] bg-[rgb(249,249,245)] mx-3 my-2 p-5 text-black/80 text-xl rounded-sm relative"
             >
-            {recentItems?.map((recent, recentIndex) => {
-                if (
-                  item.title.split(" ").join("") === recent.split(" ")[3]
-                ) {
+              {recentItems?.map((recent, recentIndex) => {
+                if (item.title.split(" ").join("") === recent.split(" ")[3]) {
                   return (
                     <span key={recentIndex}>
-                    <LastSeen
-                      time={recent.split(" ").pop()}
-                      className={" text-[12px] absolute right-5"}
-                    />
-                    
+                      <LastSeen
+                        time={recent.split(" ").pop()}
+                        className={" text-[12px] absolute right-5"}
+                      />
                     </span>
                   );
                 }
               })}
               {completedItems?.map((complete, completeIndex) => {
-                
                 if (
-                  item.title.split(" ").join("") === complete.title.split(" ")[1]
+                  item.title.split(" ").join("") ===
+                  complete.title.split(" ")[1]
                 ) {
                   return (
-                    <span key={completeIndex} className="absolute left-5 top-1 text-[12px]">
-                    (completed)
+                    <span
+                      key={completeIndex}
+                      className="absolute left-5 top-1 text-[12px]"
+                    >
+                      (completed)
                     </span>
                   );
                 }
@@ -90,34 +116,53 @@ const CollegeCourse = ({college, subject, testForm, Accordion, setClickedTube, i
               >
                 <div className="flex bg-white m-2 my-6 p-2 rounded-2xl cursor-pointer text-blue-600">
                   <div className="p-[10px] mr-[5rem] ml-10 rounded-lg shadow-black shadow-md mb-5 mt-4 w-[610px] h-[375px]">
-                    <Tube videoId={extractVideoId(item.url)} handleVideoComplete={handleVideoComplete} title={item.title} subject={subject} index={index}/>
+                    <Tube
+                      videoId={extractVideoId(item.url)}
+                      handleVideoComplete={handleVideoComplete}
+                      title={item.title}
+                      subject={subject}
+                      index={index}
+                    />
                   </div>
-                  <MyPDFComponent subject={subject} inwhat={"college"} title={item.title}/>
+                  <MyPDFComponent
+                    subject={subject}
+                    inwhat={"college"}
+                    title={item.title}
+                    handleClick={handleClick}
+                  />
                 </div>
               </Accordion>
             </div>
           ))}
         <div className=" flex flex-row justify-between items-center">
-          <div className="bg-white m-2 px-4 py-2 text-lg rounded-lg cursor-pointer text-black/80 font-sans font-normal hover:bg-black/80 hover:text-white/80 shadow-xl">
+          <div
+            onClick={() => handleClick(35)}
+            className="bg-white m-2 px-4 py-2 text-lg rounded-lg cursor-pointer text-black/80 font-sans font-normal hover:bg-black/80 hover:text-white/80 shadow-xl"
+          >
             Notes
           </div>
           {testForm ? (
-            testForm?.filter((item) => {
+            testForm
+              ?.filter((item) => {
                 if (
-                  item.type.split(/(?=[A-Z])/)[0].toLowerCase() === userData.inWhat &&
+                  item.type.split(/(?=[A-Z])/)[0].toLowerCase() ===
+                    userData.inWhat &&
                   item.course === userData.collegestudent &&
-                  item.subject.replaceAll(/\s/g, "").toLowerCase() === subject.toLowerCase()
+                  item.subject.replaceAll(/\s/g, "").toLowerCase() ===
+                    subject.toLowerCase()
                 ) {
                   return item;
                 }
               })
               .map((itemForm, index) => {
-                console.log(itemForm)
-                return <a key={index} href={itemForm.url} target="_blank">
-                  <div className=" w-[100%] bg-white mr-2 px-4 py-2 text-lg rounded-lg cursor-pointer text-black/80 font-sans font-normal hover:bg-black/80 hover-text-white/80 shadow-xl">
-                    Take Tests
-                  </div>
-                </a>
+                console.log(itemForm);
+                return (
+                  <a key={index} href={itemForm.url} target="_blank">
+                    <div className=" w-[100%] bg-white mr-2 px-4 py-2 text-lg rounded-lg cursor-pointer text-black/80 font-sans font-normal hover:bg-black/80 hover-text-white/80 shadow-xl">
+                      Take Tests
+                    </div>
+                  </a>
+                );
               })
           ) : (
             <div

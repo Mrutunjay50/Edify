@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import {saveAs} from 'file-saver'
 
-const MyPDFComponent = ({ subject, title, inwhat }) => {
+const MyPDFComponent = ({ subject, title, inwhat, handleClick }) => {
   const [documentVal, setDocumentVal] = useState({
     inwhat: inwhat,
     subject : subject,
@@ -48,7 +48,7 @@ const MyPDFComponent = ({ subject, title, inwhat }) => {
         />
       </div>
       <div
-        onClick={createDownloadPDF}
+        onClick={() => {createDownloadPDF(); handleClick(55)} }
         className="relative left-[15.7rem] bg-black/80 text-white h-[3rem] w-[10rem] cursor-pointer mt-[2.7rem] rounded-md hover:bg-white border-b-[2px] border-r-[2px] shadow-md shadow-grey"
       >
         <h2 className="text-white font-sans p-[0.6rem] pl-9 hover:text-black/90  rounded-md">

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Tube from "./Youtube";
-import { TextField } from "@mui/material/";
 import { useAuth } from "../CommonComps/LoginContext";
 import LastSeen from "../ProfileComponent/LastSeen";
 import MyPDFComponent from "./MyPDF";
+import axios from "axios";
 
 const SchoolCourse = ({
   school,
@@ -16,18 +16,36 @@ const SchoolCourse = ({
   handleVideoComplete,
   testForm
 }) => {
-  const { userData } = useAuth();
+  const { userData, setUserData, tokenId } = useAuth();
   const [completedItems, setCompletedItems] = useState(undefined);
   const [recentItems, setRecentItems] = useState(undefined);
-  console.log(testForm, subject.toLowerCase());
-  console.log(testForm.filter(item => item.subject.replaceAll(/\s/g, "").toLowerCase() === subject.toLowerCase()))
 
   useEffect(() => {
     setCompletedItems(userData?.completedItems);
     setRecentItems(userData?.recentItems);
-    // console.log(completedItems, userData?.completedItems);
-    // console.log(recentItems);
   }, [userData]);
+
+
+
+  const handleClick = async (incrementValue) => {
+    try {
+      // Make a POST request to your backend route to update action scores
+      const response = await axios.post("http://localhost:8800/updateActionScores",{
+        userId: userData._id,
+        incrementVal : incrementValue
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${tokenId}`,
+        },
+      });
+      const {user} = response.data;
+      setUserData(user)
+    } catch (error) {
+      console.error("Error updating action scores:", error);
+      // Handle error response if needed
+    }
+  };
 
   function extractVideoId(url) {
     // Regular expression pattern to match YouTube video IDs
@@ -109,11 +127,11 @@ const SchoolCourse = ({
                       />
                     </div>
                     {/* right-NoteSection */}
-                    <MyPDFComponent subject={subject} inwhat={school} title={item.chaptername}/>
+                    <MyPDFComponent subject={subject} inwhat={school} title={item.chaptername} handleClick={handleClick}/>
                   </div>
                 ))}
                 <div className=" flex flex-row justify-between items-center">
-                  <div className="bg-white m-2 px-4 py-2 text-lg rounded-lg cursor-pointer text-black/80 font-sans font-normal hover:bg-black/80 hover:text-white/80 shadow-xl">
+                  <div onClick={() => handleClick(35)} className="bg-white m-2 px-4 py-2 text-lg rounded-lg cursor-pointer text-black/80 font-sans font-normal hover:bg-black/80 hover:text-white/80 shadow-xl">
                     Notes
                   </div>
                 </div>

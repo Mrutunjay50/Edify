@@ -17,7 +17,7 @@ const Tube = ({ videoId, handleVideoComplete, title, subject, index }) => {
       <Youtube
         videoId={videoId}
         opts={opts}
-        onEnd={() => handleVideoComplete(videoId,title,subject, index)}
+        onEnd={() => handleVideoComplete(videoId, title, subject, index)}
       />
     </>
   );

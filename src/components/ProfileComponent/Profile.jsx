@@ -5,16 +5,17 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProfileImage from "./ProfileImage";
 import { Tilt } from "react-tilt";
-import { Zoom } from "@mui/material";
+import LeaderBoardTab from "./LeaderBoardTab";
+import staticData from "./staticData";
+import { useRanking } from "./RankingContext";
 
 const Profile = () => {
   const { userData } = useAuth();
   const [completedItems, setCompletedItems] = useState(undefined);
-  // const [openedAccordion, setOpenedAccordion] = useState(null);
+  const { userRanking } = useRanking()
 
   useEffect(() => {
     setCompletedItems(userData?.completedItems);
-    // console.log(completedItems, userData?.completedItems);
   }, [userData]);
 
   return (
@@ -32,25 +33,24 @@ const Profile = () => {
         <div className="flex flex-col gap-4 mt-3 -ml-4">
           <div className="text-3xl mt-2">Achievements</div>
           {/* circles */}
-          <div className="flex flex-row justify-start gap-10 mb-4">
-            <div className="h-20 w-20 rounded-full bg-gradient-to-r from-[#313e88] to-blue-500"></div>
-            <div className="h-20 w-20 rounded-full bg-gradient-to-r from-[#313e88] to-blue-500"></div>
-            <div className="h-20 w-20 rounded-full bg-gradient-to-r from-[#313e88] to-blue-500"></div>
-            <div className="h-20 w-20 rounded-full bg-gradient-to-r from-[#313e88] to-blue-500"></div>
+          <div className="  w-full flex flex-wrap gap-5">
+            <LeaderBoardTab 
+            className={'relative cursor-pointer flex w-[45%] flex-row items-center justify-between  px-3 py-[5px] border-l-[2px] border-[#a09f9f] rounded-[3px]'} 
+            className1={` h-[42px] w-[42px]  rounded-[100%]`}/>
           </div>
           {/* tracks */}
           <div className="flex flex-row gap-2 justify-start">
             <div className="h-[8rem] w-[15rem] bg-[rgb(242,241,236)] rounded-xl text-start pl-7 pt-4 flex flex-col gap-2">
               <h1 className="text-xl">Weekly Rank</h1>
-              <h1 className="text-4xl">1st</h1>
+              <h1 className="text-4xl">{userRanking? userRanking : "Loading..."}</h1>
             </div>
             <div className="h-[8rem] w-[15rem] bg-[rgb(242,241,236)] rounded-xl text-start pl-7 pt-4 flex flex-col gap-2">
               <h1 className="text-xl">Total Quiz Attempted</h1>
               <h1 className="text-4xl">32</h1>
             </div>
             <div className="h-[8rem] w-[15rem] bg-[rgb(242,241,236)] rounded-xl text-start pl-7 pt-4 flex flex-col gap-2">
-              <h1 className="text-xl">Total ex earned</h1>
-              <h1 className="text-4xl">1200+</h1>
+              <h1 className="text-xl">Total exp earned</h1>
+              <h1 className="text-4xl">{userData && userData.totalExp}</h1>
             </div>
           </div>
           <div className="text-3xl mt-4">Recently Watched</div>
@@ -67,12 +67,8 @@ const Profile = () => {
                     className="hover:scale-105 transition-all duration-300 ease-in-out h-[5rem] w-1/3 bg-[#ffffff] mx-2 my-2 rounded-md border-r-[2px] border-l-[2px] border-[#a09f9f]"
                     style={{
                       boxShadow: "-3px 3px 8px #c5c5c5,-3px -3px  8px #ffffff",
-                    }}
-                  >
-                    <div
-                      
-                      className="h-full  cursor-pointer relative flex flex-col items-center justify-center"
-                    >
+                    }} >
+                    <div className="h-full  cursor-pointer relative flex flex-col items-center justify-center" >
                       <span className=" text-[#343232] text-[12px] text-center p-2 absolute -top-2 left-0">
                         {itemArr[2].split(/(?=[A-Z])/).join(" ")}
                       </span>
@@ -81,10 +77,7 @@ const Profile = () => {
                       </span>
                       <LastSeen
                         time={item.split(" ").pop()}
-                        className={
-                          " text-[12px] text-[#343232] absolute right-2 bottom-1"
-                        }
-                      />
+                        className={ " text-[12px] text-[#343232] absolute right-2 bottom-1" } />
                     </div>
                   </Link>
                 );

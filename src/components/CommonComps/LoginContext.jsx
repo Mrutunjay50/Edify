@@ -10,15 +10,6 @@ export const AuthProvider = ({ children }) => {
   const [userData, setUserData] = useState();
   const [tokenId, setToken] = useState();
 
-  // useEffect(() => {
-  //   const storedJWT = localStorage.getItem("jwt");
-
-  //   if (storedJWT) {
-  //     const decodedUserData = jwt_decode(storedJWT);
-  //     setUserData(decodedUserData.userData);
-  //   }
-  // }, []);
-
   useEffect(() => {
     // Retrieve the token from the HTTP cookie
     const cookies = document.cookie.split(';');
