@@ -47,7 +47,7 @@ export const RankingProvider = ({ children }) => {
     } else {
       console.log("'user' not found in data");
     }
-  },[])
+  },[rankingData])
 
   const calculateRank = (index, totalCount) => {
     const percentage = (index / totalCount) * 100;
