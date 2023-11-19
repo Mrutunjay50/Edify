@@ -12,7 +12,7 @@ import { useRanking } from "./RankingContext";
 const Profile = () => {
   const { userData } = useAuth();
   const [completedItems, setCompletedItems] = useState(undefined);
-  const { userRanking } = useRanking()
+  const { userRanking } = useRanking();
 
   useEffect(() => {
     setCompletedItems(userData?.completedItems);
@@ -33,22 +33,45 @@ const Profile = () => {
         <div className="flex flex-col gap-4 mt-3 -ml-4">
           <div className="text-3xl mt-2">Achievements</div>
           {/* circles */}
-          <div className="  w-full flex flex-wrap gap-5">
-            <LeaderBoardTab 
-            className={'relative cursor-pointer flex w-[45%] flex-row items-center justify-between  px-3 py-[5px] border-l-[2px] border-[#a09f9f] rounded-[3px]'} 
-            className1={` h-[42px] w-[42px]  rounded-[100%]`}/>
+          <div className="  w-full flex flex-wrap gap-2">
+            <LeaderBoardTab
+              className={
+                " text-[#6d6b6b] font-playpen relative cursor-pointer flex w-[23%] flex-col gap-2 items-center justify-center  px-3 py-[5px] border-[#a09f9f] rounded-[3px]"
+              }
+              className1={`h-[60px] w-[60px]  rounded-[100%] border-2 border-[#ffffff]`}
+            />
           </div>
           {/* tracks */}
-          <div className="flex flex-row gap-2 justify-start">
-            <div className="h-[8rem] w-[15rem] bg-[rgb(242,241,236)] rounded-xl text-start pl-7 pt-4 flex flex-col gap-2">
+          <div className="flex flex-row gap-3 justify-start mt-5">
+            <div
+              className="h-[8rem] w-[15rem] bg-[rgb(252,251,247)] rounded-xl text-start pl-7 pt-4 flex flex-col gap-2"
+              style={{
+                boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
+                borderRadius: "5px",
+              }}
+            >
               <h1 className="text-xl">Weekly Rank</h1>
-              <h1 className="text-4xl">{userRanking? userRanking : "Loading..."}</h1>
+              <h1 className="text-4xl">
+                {userRanking ? userRanking : "Loading..."}
+              </h1>
             </div>
-            <div className="h-[8rem] w-[15rem] bg-[rgb(242,241,236)] rounded-xl text-start pl-7 pt-4 flex flex-col gap-2">
+            <div
+              className="h-[8rem] w-[15rem] bg-[rgb(252,251,247)] rounded-xl text-start pl-7 pt-4 flex flex-col gap-2"
+              style={{
+                boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
+                borderRadius: "5px",
+              }}
+            >
               <h1 className="text-xl">Total Quiz Attempted</h1>
               <h1 className="text-4xl">32</h1>
             </div>
-            <div className="h-[8rem] w-[15rem] bg-[rgb(242,241,236)] rounded-xl text-start pl-7 pt-4 flex flex-col gap-2">
+            <div
+              className="h-[8rem] w-[15rem] bg-[rgb(252,251,247)] rounded-xl text-start pl-7 pt-4 flex flex-col gap-2"
+              style={{
+                boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
+                borderRadius: "5px",
+              }}
+            >
               <h1 className="text-xl">Total exp earned</h1>
               <h1 className="text-4xl">{userData && userData.totalExp}</h1>
             </div>
@@ -66,9 +89,10 @@ const Profile = () => {
                     key={index}
                     className="hover:scale-105 transition-all duration-300 ease-in-out h-[5rem] w-1/3 bg-[#ffffff] mx-2 my-2 rounded-md border-r-[2px] border-l-[2px] border-[#a09f9f]"
                     style={{
-                      boxShadow: "-3px 3px 8px #c5c5c5,-3px -3px  8px #ffffff",
-                    }} >
-                    <div className="h-full  cursor-pointer relative flex flex-col items-center justify-center" >
+                      boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
+                    }}
+                  >
+                    <div className="h-full  cursor-pointer relative flex flex-col items-center justify-center">
                       <span className=" text-[#343232] text-[12px] text-center p-2 absolute -top-2 left-0">
                         {itemArr[2].split(/(?=[A-Z])/).join(" ")}
                       </span>
@@ -77,7 +101,10 @@ const Profile = () => {
                       </span>
                       <LastSeen
                         time={item.split(" ").pop()}
-                        className={ " text-[12px] text-[#343232] absolute right-2 bottom-1" } />
+                        className={
+                          " text-[12px] text-[#343232] absolute right-2 bottom-1"
+                        }
+                      />
                     </div>
                   </Link>
                 );
@@ -105,25 +132,24 @@ const Profile = () => {
                     }
 
                     return (
-                      <Tilt key={index} options={{ scale: 1 }}
-                      style={{
-                          boxShadow:
-                            "-3px 3px 8px #c5c5c5,-3px -3px  8px #dddbdb",
+                      <Tilt
+                        key={index}
+                        options={{ scale: 1 }}
+                        style={{
+                          boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
                           borderRadius: "5px",
-                        }}>
-                      <Link
-                        to={`/Edify/${inwhat}/${course}/${title[0]}`}
-                        
+                        }}
                       >
-                        <div className="h-[5.5rem] w-[14rem] border-r-2 border-l-2 border-blue-300 rounded-[5px] flex flex-col px-2 items-center justify-around cursor-pointer">
-                          <span className=" text-[12px]">
-                            {title[1].split(/(?=[A-Z])/).join(" ")}
-                          </span>
-                          <span className=" text-[12px]">
-                            {title[0].split(/(?=[A-Z])/).join(" ")}
-                          </span>
-                        </div>
-                      </Link>
+                        <Link to={`/Edify/${inwhat}/${course}/${title[0]}`}>
+                          <div className="h-[5.5rem] w-[14rem] border-r-2 border-l-2 border-blue-300 rounded-[5px] flex flex-col px-2 items-center justify-around cursor-pointer">
+                            <span className=" text-[12px]">
+                              {title[1].split(/(?=[A-Z])/).join(" ")}
+                            </span>
+                            <span className=" text-[12px]">
+                              {title[0].split(/(?=[A-Z])/).join(" ")}
+                            </span>
+                          </div>
+                        </Link>
                       </Tilt>
                     );
                   } else {
@@ -132,7 +158,6 @@ const Profile = () => {
                 })}
             </div>
           )}
-          
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ const RankingContext = createContext();
 
 export const RankingProvider = ({ children }) => {
   const [rankingData, setRankingData] = useState([]);
-  const [selectedTab, setSelectedTab] = useState("Gold");
+  const [selectedTab, setSelectedTab] = useState("Platinum");
   const { userData } = useAuth();
   const [userRanking, setUserRanking] = useState();
 
@@ -38,7 +38,7 @@ export const RankingProvider = ({ children }) => {
 
   useEffect(() =>{
     const user = rankingData.find(item => item.username === userData?.username);
-    console.log(user);
+    
     if (user) {
       const totalCount = rankingData.length;
       const index = rankingData.findIndex(item => item.username === userData?.username);
@@ -53,13 +53,13 @@ export const RankingProvider = ({ children }) => {
     const percentage = (index / totalCount) * 100;
 
     if (percentage <= 10) {
-        const rank = [index, "Gold"]
+        const rank = [index, "Platinum"]
       return rank;
     } else if (percentage <= 30) {
-        const rank = [index, "Silver"]
+        const rank = [index, "Gold"]
       return rank;
     } else if (percentage <= 50) {
-        const rank = [index, "Copper"]
+        const rank = [index, "Silver"]
       return rank;
     } else {
         const rank = [index, "Bronze"]

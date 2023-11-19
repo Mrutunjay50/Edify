@@ -27,6 +27,7 @@ import { useAuth } from "./components/CommonComps/LoginContext";
 import { BsChatRightFill } from "react-icons/bs";
 import { useState } from "react";
 import { RankingProvider } from "./components/ProfileComponent/RankingContext";
+import ScoreUpdater from "./components/testScoreUpdater";
 
 const App = () => {
   const { userData } = useAuth();
@@ -48,17 +49,17 @@ const App = () => {
           </div>
         </>
       )}
-        <RankingProvider>
-
-      <Routes>
-        <Route path="/Edify" element={<Home />} />
-        <Route path="/Edify/about" element={<About />} />
-        <Route path="/Edify/courses" element={<CoursesMain />} />
-        <Route path="/Edify/studymaterial" element={<StudyMaterial />} />
-        <Route path="/Edify/login" element={<Login />} />
-        <Route path="/Edify/signup" element={<Signup />} />
-        <Route path="/Edify/contact" element={<Contact />} />
-        <Route path="/Edify/testcreation" element={<TestCraetionForm />} />
+      <RankingProvider>
+        <Routes>
+          <Route path="/Edify" element={<Home />} />
+          <Route path="/Edify/about" element={<About />} />
+          <Route path="/Edify/courses" element={<CoursesMain />} />
+          <Route path="/Edify/studymaterial" element={<StudyMaterial />} />
+          <Route path="/Edify/login" element={<Login />} />
+          <Route path="/Edify/signup" element={<Signup />} />
+          <Route path="/Edify/contact" element={<Contact />} />
+          <Route path="/Edify/testcreation" element={<TestCraetionForm />} />
+          <Route path="/Edify/scoreupdator" element={<ScoreUpdater />} />
           <Route path="Edify" element={<ProtectedRoute />}>
             <Route path="typechecker" element={<MainType />} />
             <Route path="settings" element={<AccountSetting />} />
@@ -69,8 +70,8 @@ const App = () => {
               <Route path=":inWhat/:course/:subject" element={<ViewCourse />} />
             </Route>
           </Route>
-      </Routes>
-        </RankingProvider>
+        </Routes>
+      </RankingProvider>
       <Newsletter />
       <Footer />
       <ChatBot />
