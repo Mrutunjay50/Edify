@@ -4,6 +4,8 @@ import axios from "axios";
 import { useAuth } from "../CommonComps/LoginContext";
 import SchoolCourse from "./SchoolCourse";
 import CollegeCourse from "./CollegeCourse";
+import { useRanking } from "../ProfileComponent/RankingContext";
+
 
 function Accordion(props) {
   return (
@@ -38,6 +40,7 @@ const ViewCourse = () => {
   const [time, setTime] = useState();
   const [clickedTube, setClickedTube] = useState(null);
   const [isOpen, setIsOpen] = useState([]);
+  const{ socket } = useRanking();
 
   
   // Function to trigger the Google Apps Script and get the JSON data
@@ -65,7 +68,6 @@ const ViewCourse = () => {
           .subjects.filter(
             (item) => item.subjectname.replaceAll(" ", "") === subject
           );
-        console.log(classData);
 
         setSchool(classData ? classData[0] : []);
       })
@@ -132,7 +134,7 @@ const ViewCourse = () => {
   };
 
   const handleVideoComplete = (videoId, title, subject) => {
-    console.log("videoCompleted", videoId, title, subject);
+    // console.log("videoCompleted", videoId, title, subject);
   
     // Send a request to your backend API to store completion data
     axios
@@ -149,6 +151,7 @@ const ViewCourse = () => {
       .then((response) => {
         if (response.status === 200) {
           setUserData(response.data.student);
+          socket.emit('completionScore' , {data : "completion sent"})
           // Handle success, e.g., show a completion message
           console.log("Video completed!");
         } else {

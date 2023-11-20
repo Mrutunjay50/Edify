@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useAuth } from '../CommonComps/LoginContext';
 import axios from 'axios';
+import io from 'socket.io-client';
+
+const socket = io.connect("http://localhost:8800");
 
 const RankingContext = createContext();
 
@@ -33,8 +36,17 @@ export const RankingProvider = ({ children }) => {
     }else {
       console.log("no data till now");
     }
+    
     setRankingData(rankingData?.sort((a, b) => b.totalExp - a.totalExp));
-  },[userData])
+  },[userData]);
+
+  useEffect(() =>{
+    socket.on('ScoreDATA' , ({users}) => {
+      console.log(users);
+      setRankingData(users?.sort((a, b) => b.totalExp - a.totalExp));
+    })
+  },[socket])
+
 
   useEffect(() =>{
     const user = rankingData.find(item => item.username === userData?.username);
@@ -86,7 +98,7 @@ export const RankingProvider = ({ children }) => {
   };
 
   return (
-    <RankingContext.Provider value={{userRanking, rankingData, setRankingData, getTopScorer, handleTabClick, filterDataByTab, calculateRank, selectedTab, setSelectedTab }}>
+    <RankingContext.Provider value={{socket, userRanking, rankingData, setRankingData, getTopScorer, handleTabClick, filterDataByTab, calculateRank, selectedTab, setSelectedTab }}>
       {children}
     </RankingContext.Provider>
   );

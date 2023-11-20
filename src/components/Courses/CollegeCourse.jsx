@@ -4,6 +4,7 @@ import { useAuth } from "../CommonComps/LoginContext";
 import LastSeen from "../ProfileComponent/LastSeen";
 import MyPDFComponent from "./MyPDF";
 import axios from "axios";
+import { useRanking } from "../ProfileComponent/RankingContext";
 
 const CollegeCourse = ({
   college,
@@ -19,6 +20,7 @@ const CollegeCourse = ({
   const { userData, tokenId , setUserData} = useAuth();
   const [completedItems, setCompletedItems] = useState(undefined);
   const [recentItems, setRecentItems] = useState(undefined);
+  const{ socket } = useRanking();
 
   useEffect(() => {
     setCompletedItems(userData?.completedItems);
@@ -40,7 +42,8 @@ const CollegeCourse = ({
         },
       });
       const {user} = response.data;
-      setUserData(user)
+      setUserData(user);
+      socket.emit('actionScore' , {data : "send"})
     } catch (error) {
       console.error("Error updating action scores:", error);
       // Handle error response if needed

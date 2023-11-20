@@ -29,6 +29,7 @@ import { useState } from "react";
 import { RankingProvider } from "./components/ProfileComponent/RankingContext";
 import ScoreUpdater from "./components/testScoreUpdater";
 
+
 const App = () => {
   const { userData } = useAuth();
   const [chatIsOpen, setChatIsOpen] = useState(false);
@@ -49,7 +50,7 @@ const App = () => {
           </div>
         </>
       )}
-      <RankingProvider>
+      <RankingProvider >
         <Routes>
           <Route path="/Edify" element={<Home />} />
           <Route path="/Edify/about" element={<About />} />
