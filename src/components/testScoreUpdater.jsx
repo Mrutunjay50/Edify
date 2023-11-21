@@ -6,6 +6,7 @@ const ScoreUpdater = () => {
   const [college, setCollege] = useState([]);
   const [course, setCourse] = useState([]);
   const [spreadSheetId, setSpreadSheetId] = useState(undefined);
+  const [idGot, setIdGot] = useState(false);
   const [scoreData, setScoreData] = useState({
     inWhat: "",
     course: "",
@@ -67,6 +68,21 @@ const ScoreUpdater = () => {
         console.error(error);
       });
   };
+
+
+  const handleSheetData = () =>{
+    const {inWhat, course, subject} = scoreData;
+    axios
+      .post("http://localhost:8800/getScoreFromSheets", {inWhat, course, subject, spreadSheetId})
+      .then((response) => {
+        // Handle a successful response from the server, if needed
+        console.log("Data sent successfully", response.data);
+      })
+      .catch((error) => {
+        // Handle any errors that occur during the request
+        console.error("Error sending data", error);
+      });
+  }
 
   useEffect(() => {
     if (scoreData.inWhat === "college") {
@@ -149,9 +165,13 @@ const ScoreUpdater = () => {
           </div>
         </div>
 
-        <div>
+        <div className=" flex flex-col mt-10">
           <input type="text" value={spreadSheetId?.length > 0 && spreadSheetId[0].responseSheetId} hidden />
-          di
+          <div className="flex justify-between items-center">
+          <div className="h-[6vh] bg-white p-3 rounded-md text-lg flex justify-center items-center cursor-pointer" onClick={handleSheetData}>UpdateScore Data</div>
+          <div className="h-[6vh] bg-white p-3 rounded-md text-lg flex justify-center items-center cursor-pointer" onClick={() => setIdGot(!idGot)}>Get Sheet</div>
+          </div>
+          {spreadSheetId?.length > 0 && idGot && <div className="overflow-x-scroll overflow-y-hidden mt-10 h-[6vh] bg-white p-3 rounded-md text-lg flex justify-center items-center cursor-pointer"><a href={`https://docs.google.com/spreadsheets/d/${spreadSheetId?.length > 0 && spreadSheetId[0].responseSheetId}/edit`} target="_blank" rel="noopener noreferrer">https://docs.google.com/spreadsheets/d/{spreadSheetId?.length > 0 && spreadSheetId[0].responseSheetId}/edit</a></div>}
         </div>
       </div>
     </div>
