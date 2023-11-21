@@ -51,7 +51,7 @@ function ClassSecComp() {
   }, [school, college]);
 
   const renderClasses = (range) => (
-    userData ? <div className="h-[3rem] w-[88%] ml-20 rounded-lg flex flex-row justify-start gap-36">
+    userData ? <div className="h-[3rem] w-[88%] mx-10 tablet:mx-0 tablet:ml-20 rounded-lg flex flex-row justify-start gap-5 tablet:gap-36">
     {range.map((item, index) => (
       <div
         key={index}
@@ -82,7 +82,7 @@ function ClassSecComp() {
         )}
       </div>
     ))}
-  </div> : <div className="h-[3rem] w-[88%] ml-20 rounded-lg flex flex-row justify-start gap-36">
+  </div> : <div className="h-[3rem] w-[88%] mx-10 tablet:mx-0 tablet:ml-20 rounded-lg flex flex-row justify-start gap-5 tablet:gap-36">
       {range.map((item, index) => (
         <div
           key={index}
@@ -102,7 +102,7 @@ function ClassSecComp() {
 
 
   const renderUniversityClasses = () => (
-    userData ? <div className="h-[3rem] w-[88%] ml-20 rounded-lg flex flex-row justify-start gap-36">
+    userData ? <div className="h-[3rem] w-[88%] mx-10 tablet:mx-0 tablet:ml-20 rounded-lg flex flex-row justify-start gap-5 tablet:gap-36">
     {college.map((item, index) => (
       <div
         key={index}
@@ -128,7 +128,7 @@ function ClassSecComp() {
         )}
       </div>
     ))}
-  </div> : <div className="h-[3rem] w-[88%] ml-20 rounded-lg flex flex-row justify-start gap-36">
+  </div> : <div className="h-[3rem] w-[88%] mx-10 tablet:mx-0 tablet:ml-20 rounded-lg flex flex-row justify-start gap-5 tablet:gap-36">
       {college.map((item, index) => (
         <div
           key={index}
@@ -152,9 +152,9 @@ function ClassSecComp() {
       {userData ? (
         <div className="flex flex-col gap-4 mb-5">
           <ToastContainer />
-          <h2 className="text-[2.5rem] font-sans ml-20">Explore Our Courses</h2>
+          <h2 className="text-[1.5rem] tablet:text-[2.5rem] font-sans mx-10 tablet:mx-0 tablet:ml-20">Explore Our Courses</h2>
           {userData && userData.inWhat === "school" && (
-            <div className="h-[3rem] w-[88%] ml-20 bg-white rounded-lg flex flex-row justify-start gap-36">
+            <div className="h-[3rem] w-[88%] mx-10 tablet:mx-0 tablet:ml-20 bg-white rounded-lg flex flex-row justify-start laptop:gap-36">
               {["6-8", "9-10", "11-12"].map((range) => (
                 <div
                   key={range}
@@ -170,7 +170,7 @@ function ClassSecComp() {
           )}
 
           {userData && userData.inWhat === "college" && (
-            <div className="h-[3rem] w-[88%] ml-20 bg-white rounded-lg flex flex-row justify-start gap-36">
+            <div className="h-[3rem] w-[88%] mx-10 tablet:mx-0 tablet:ml-20 bg-white rounded-lg flex flex-row justify-start pc:gap-36">
               <div
                 key="University"
                 className={`flex flex-row justify-around bg-white h-[2.5rem] w-[6rem] rounded-xl items-center mt-1 hover:bg-black/10 cursor-pointer ${
@@ -201,8 +201,8 @@ function ClassSecComp() {
         </div>
       ) : (
         <div>
-        <h2 className="text-[2.5rem] font-sans ml-20">Explore Our Courses</h2>
-          <div className="h-[3rem] w-[88%] ml-20 bg-white rounded-lg flex flex-row justify-start gap-36">
+        <h2 className=" text-[1.5rem] tablet:text-[2.5rem] font-sans mx-10 tablet:mx-0 tablet:ml-20">Explore Our Courses</h2>
+          <div className="pc:h-[3rem] pc:w-[88%] tablet:ml-16 pc:ml-20 bg-white rounded-lg flex laptop:flex-row justify-start laptop:gap-36">
             {["6-8", "9-10", "11-12", "University"].map((range) => (
               <div
                 key={range}

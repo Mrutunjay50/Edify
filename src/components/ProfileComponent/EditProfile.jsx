@@ -5,14 +5,16 @@ import {
   AiFillTwitterCircle,
   AiFillLinkedin,
 } from "react-icons/ai";
+import { FiChevronDown } from "react-icons/fi";
 import { useAuth } from "../CommonComps/LoginContext";
 import { useState } from "react";
 import axios from "axios";
 import ProfileImage from "./ProfileImage";
+import { useRanking } from "./RankingContext.jsx";
 
 const EditProfile = () => {
   const { userData, setUserData } = useAuth();
-
+  const { profileOn, setProfileOn } = useRanking();
   const [editData, setEditData] = useState({});
 
   useEffect(() => {
@@ -98,20 +100,29 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="flex flex-row items-start mb-10">
-      <ProNavbar className={"sticky top-[15%] ml-3 mb-52 w-full h-full"} />
+    <div className="flex flex-row items-start mb-10 w-full">
+    <div className=" absolute pc:hidden top-[14vh] px-3 h-[6vh] w-[100px] bg-gray-300 flex justify-start items-center rounded-[50px] -right-16">
+          <FiChevronDown
+            onClick={() => setProfileOn(!profileOn)}
+            className={` ${
+              profileOn ? "-rotate-90" : " rotate-90"
+            } h-[20px] tablet:bottom-0 transition-all hover:scale-125 cursor-pointer z-50`}
+          />
+        </div>
+        <ProNavbar className={"hidden pc:block z-40 pc:sticky pc:top-[15%] ml-3 mb-52 bg-white"} />
+      {profileOn && <ProNavbar className={"absolute pc:hidden z-40 top-[8vh] tablet:top-[14vh] right-0 ml-3 mb-52 bg-white"} />}
       {userData ? (
-        <form method="post" encType="multipart/form-data">
-          <div className="flex flex-row items-center gap-5">
+        <form method="post" encType="multipart/form-data" className="w-full">
+          <div className="flex flex-col pc:flex-row items-center gap-5 w-full">
             {/* left */}
-            <div className="flex-[2.1] h-[88vh] w-[26.4vw] -mt-[22rem] pt-10 border-r-[0.1px] border-r-black/60">
+            <div className="hidden pc:block flex-[2.1] pc:h-[88vh] pc:w-[26.4vw] -mt-[22rem] pt-10 border-r-[0.1px] border-r-black/60">
               <ProfileImage
                 userData={userData}
                 className={`flex flex-col gap-2 bg-white mt-[0.4rem] ml-4 pt-8`}
               />
             </div>
             {/* right */}
-            <div className=" flex-[2.85] h-full w-[30vw] pt-6  bg-white border-r-[2px] border-black/20 pr-6">
+            <div className=" pc:flex-[2.85] h-full w-full pc:w-[30vw] pc:pt-6  bg-white border-r-[2px] border-black/20 pr-6">
               <div className="flex flex-col justify-start pt-[6rem] px-2 gap-[0.6rem] mb-5">
                 <h1 className="text-2xl">Personal Info</h1>
                 <div className="flex flex-row relative items-center">
@@ -308,11 +319,11 @@ const EditProfile = () => {
                 />
                 <button
                   onClick={handleSubmit}
-                  className="border-[1px] pl-2 -mt-2 pt-1 pb-1 w-[10vw] rounded-lg text-center bg-black/90 text-white/80 hover:bg-white/70 hover:text-black/60"
+                  className="border-[1px] -mt-2 pt-1 pb-1 w-[20%] pc:w-[10vw] rounded-lg text-center bg-black/90 text-white/80 hover:bg-white/70 hover:text-black/60"
                 >
                   Save
                 </button>
-                <button className="border-[1px] pl-2 -mt-2 pt-1 pb-1 w-[12vw] rounded-lg text-center bg-black/90 text-white/80 hover:bg-white/70 hover:text-black/90 hover:font-semibold">
+                <button className="border-[1px] -mt-2 pt-1 pb-1 w-[20%] pc:w-[12vw] rounded-lg text-center bg-black/90 text-white/80 hover:bg-white/70 hover:text-black/90 hover:font-semibold">
                   Cancel
                 </button>
                 <div className="text-center h-[24rem] w-[8rem] bg-white rounded-xl pt-11"></div>

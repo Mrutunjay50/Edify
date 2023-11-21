@@ -61,7 +61,7 @@ const CoursesMain = () => {
         </CourseProvider>
       </Box>
 
-      <div className="mx-[4rem] mb-10 -mt-5">
+      <div className="laptop:mx-[4rem] mb-10 -mt-5">
         {userData ? <>
           <div className=" font-playpen text-[20px] mx-4 mb-4">YourCourses</div>
         <div className="flex flex-row  overflow-x-auto overflow-y-hidden whitespace-nowrap rounded-2xl">

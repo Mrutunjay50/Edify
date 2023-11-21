@@ -49,18 +49,18 @@ const Login = () => {
 
 
   return (
-    <div className="relative bg-[rgb(242,241,236)] h-[calc(100vh-10vh)] flex flex-row justify-around rounded-b-3xl font-roboto mb-1 mt-[10vh]">
+    <div className="relative bg-[rgb(242,241,236)] w-full h-[100vh] laptop:h-[calc(100vh-10vh)] flex flex-col laptop:flex-row justify-between tablet:justify-around items-center rounded-b-3xl font-roboto mb-1 mt-[10vh]">
       {/* Left */}
       <div className="">
-        <img src={login2} alt="" className="w-full h-[100vh]"></img>
+        <img src={login2} alt="" className="w-full pc:h-[100vh] absolute laptop:relative z-0"></img>
       </div>
 
       {/* right */}
-      <div className="flex flex-col justify-center w-[55vw] px-32 mr-[8vw] ">
-        <div className="text-5xl text-black text-center mb-10 font-roboto">
+      <div className="flex flex-col justify-center w-full absolute mt-[14vh] tablet:mt-0 tablet:relative px-2 pc:w-[55vw] tablet:px-32 tablet:mr-[8vw] bg-transparent z-10">
+        <div className="text-4xl tablet:text-5xl text-black text-center mb-10 font-roboto">
           Login
         </div>
-        <div className="text-2xl text-black mr-32">This is my Email</div>
+        <div className=" tablet:w-full text-2xl text-black mx-[5%] tablet:mx-0 w-full mr-32">This is my Email</div>
         <br />
         <input
           type="email"
@@ -68,10 +68,10 @@ const Login = () => {
           onChange={handleLogin}
           value={login.email}
           onKeyDown={handleKeyDown} // Listen for Enter key
-          className=" py-2 rounded-sm border-b-[1px] border-black bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
+          className=" mx-[5%] tablet:mx-0 w-[90%] tablet:w-full py-2 rounded-sm border-b-[1px] border-black bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
         ></input>
         <br />
-        <div className="text-2xl text-black mr-32">This is my Password</div>
+        <div className="text-2xl text-black mx-[5%] tablet:mx-0 w-full mr-32">This is my Password</div>
         <br />
         <input
           type="password"
@@ -79,12 +79,12 @@ const Login = () => {
           onChange={handleLogin}
           value={login.password}
           onKeyDown={handleKeyDown} // Listen for Enter key
-          className="py-2 rounded-sm border-b-[1px] border-black bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
+          className="mx-[5%] tablet:mx-0 w-[90%] tablet:w-full py-2 rounded-sm border-b-[1px] border-black bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
         ></input>
         <br />
         <button
           onClick={handleSubmit}
-          className="bg-[#211b3e] rounded-lg h-12 text-white my-6"
+          className="bg-[#211b3e] mx-[5%] tablet:mx-[0%] rounded-lg h-12 text-white my-6"
         >
           Login
         </button>

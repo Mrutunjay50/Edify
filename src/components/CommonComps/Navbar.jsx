@@ -43,14 +43,14 @@ const Navbar = () => {
         showNavbar
           ? " transition ease-in-out translate-y-0 transform duration-300"
           : "-translate-y-full transition transform ease-in-out duration-300"
-      } fixed z-20 h-[14vh] w-full top-0 flex flex-col font-semibold justify-around hover:scale-100`}
+      } fixed z-50 h-[8vh] tablet:h-[14vh] w-full top-0 flex flex-col font-semibold justify-around hover:scale-100`}
     >
-        <div className={`${showMenu ? "h-[7.8vh] " : "h-[10vh]"} duration-300 bg-white border-b-2 border-[#838383] group-hover:border-white group-hover:text-white transition-all ease-in-out group-hover:bg-[#211b3e] relative flex flex-row justify-between items-center`}>
+        <div className={`${showMenu ? "h-[7.8vh] " : "h-[10vh]"} duration-300 z-50 bg-white border-b-2 border-[#838383] group-hover:border-white group-hover:text-white transition-all ease-in-out group-hover:bg-[#211b3e] relative flex flex-row justify-between items-center`}>
         <div className="text-2xl ml-10 transition-all hover:scale-100 font-playpen font-medium">
           <Link to="/Edify" className="bg-gradient-to-r from-[#6a94fd] to-[#7018fd] bg-clip-text text-transparent">Edify</Link>
         </div>
         {userData ? (
-          <div className=" font-mono flex justify-end items-center gap-[2.4rem] ml-[56%] mr-10 font-playpen">
+          <div className=" font-mono flex laptop:justify-end items-center gap-[2.4rem] laptop:ml-[56%] mr-10 font-playpen">
             <h2
               className="text-md font-light cursor-pointer transition-all hover:scale-90"
               onClick={handleLogout}
@@ -75,25 +75,25 @@ const Navbar = () => {
                 
               </div>
             </Link>
-            <FiChevronDown onClick={() => setShowMenu(!showMenu)} className={` ${showMenu ? "" : "rotate-180"} h-[20px] w-[20px] absolute bottom-0 transition-all hover:scale-125 left-[50%] cursor-pointer`}/>
+            <FiChevronDown onClick={() => setShowMenu(!showMenu)} className={` ${showMenu ? "rotate-180" : " tablet:rotate-180"} h-[20px] w-[20px] absolute tablet:bottom-0 transition-all hover:scale-125 right-1 tablet:left-[50%] cursor-pointer`}/>
             
           </div>
         ) : (
-          <div className=" font-mono flex justify-end gap-[2.4rem] ml-[56%] mt-[0.47rem] mr-10 font-playpen">
+          <div className=" font-mono flex tablet:justify-end gap-[2.4rem] laptop:ml-[56%] mt-[0.47rem] mr-10 font-playpen">
             <h2 className="text-md font-light cursor-pointer transition-all hover:scale-90 ml-32">
               <Link to="/Edify/login">Login</Link>
             </h2>
             <h2 className="text-md font-light cursor-pointer transition-all hover:scale-90">
               <Link to="/Edify/signup">Signup</Link>
             </h2>
-            <FiChevronDown onClick={() => setShowMenu(!showMenu)} className={` ${showMenu ? "" : "rotate-180"} h-[20px] w-[20px] absolute bottom-0 transition-all hover:scale-125 left-[50%] cursor-pointer`}/>
+            <FiChevronDown onClick={() => setShowMenu(!showMenu)} className={` ${showMenu ? "" : "rotate-180"} h-[20px] w-[20px] absolute tablet:bottom-0 transition-all hover:scale-125 right-1 tablet:left-[50%] cursor-pointer`}/>
           </div>
         )}
         </div>
-        <div className={`${showMenu ? "h-[6.2vh] group-hover:bg-[#211b3e] group-hover:text-white bg-white" : "h-[4vh]"}  transition-all duration-300 ease-in-out flex flex-row items-center justify-center gap-[2.5rem]`}>
+        <div className={`${showMenu ? "h-[80vh] tablet:h-[6.2vh]  w-full group-hover:bg-[#211b3e] z-10 group-hover:text-white bg-white translate-y-0" : "h-[80vh]  tablet:h-[4vh] -translate-y-6"}  transition-all duration-300 ease-in-out flex flex-col tablet:flex-row absolute top-0 tablet:relative items-center justify-center gap-[2.5rem]`}>
         {showMenu && 
         <>
-        <div className="text-md cursor-pointer transition-all hover:scale-105 -ml-10">
+        <div className="text-md cursor-pointer transition-all hover:scale-105 tablet:-ml-10">
           <Link to="/Edify/about">About us</Link>
         </div>
         <div className="text-md cursor-pointer transition-all hover:scale-105">

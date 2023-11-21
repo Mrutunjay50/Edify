@@ -65,7 +65,7 @@ const CoursesAccToClass = () => {
           {collegeData || schoolData ? (
             userData && userData.inWhat === "school" ? (
               school && school[0] ? (
-                <div className="flex flex-row mx-[4rem] overflow-x-auto overflow-y-hidden whitespace-nowrap rounded-2xl">
+                <div className="flex flex-row laptop:mx-[4rem] overflow-x-auto overflow-y-hidden whitespace-nowrap rounded-2xl">
                   {school[0].map((item, index) => (
                     <Tilt key={index} options={{ scale: 1 }}>
                       <Zoom in={course}>
@@ -108,7 +108,7 @@ const CoursesAccToClass = () => {
               userData &&
               userData.inWhat === "college" &&
               (college && college[0] ? (
-                <div className="flex flex-row mx-[4rem] overflow-x-auto overflow-y-hidden whitespace-nowrap rounded-2xl">
+                <div className="flex flex-row laptop:mx-[4rem] overflow-x-auto overflow-y-hidden whitespace-nowrap rounded-2xl">
                   {college[0].map((item, index) => (
                     <Tilt key={index} options={{ scale: 1 }}>
                       <Zoom in={course}>
@@ -153,7 +153,7 @@ const CoursesAccToClass = () => {
           {schoolData || collegeData ? (
             <div>
             {school || college ? (
-                <div className="flex flex-row mx-[4rem] overflow-x-auto overflow-y-hidden whitespace-nowrap rounded-2xl">
+                <div className="flex flex-row laptop:mx-[4rem] overflow-x-auto overflow-y-hidden whitespace-nowrap rounded-2xl">
                 {college && college[0] && collegeData ? college[0].map((item, index) => (
                     <Tilt key={index} options={{ scale: 1 }}>
                       <Zoom in={course}>

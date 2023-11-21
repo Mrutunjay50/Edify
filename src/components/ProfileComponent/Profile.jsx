@@ -6,45 +6,54 @@ import { useEffect, useState } from "react";
 import ProfileImage from "./ProfileImage";
 import { Tilt } from "react-tilt";
 import LeaderBoardTab from "./LeaderBoardTab";
-import staticData from "./staticData";
 import { useRanking } from "./RankingContext";
+import { FiChevronDown } from "react-icons/fi";
 
 const Profile = () => {
   const { userData } = useAuth();
   const [completedItems, setCompletedItems] = useState(undefined);
-  const { userRanking } = useRanking();
+  const { userRanking, profileOn, setProfileOn } = useRanking();
 
   useEffect(() => {
     setCompletedItems(userData?.completedItems);
   }, [userData]);
 
   return (
-    <div className="h-full flex flex-row items-start mb-10">
-      <ProNavbar className={"sticky top-[15%] ml-3 mb-52 w-full h-full"} />
+    <div className="h-full flex flex-col pc:flex-row pc:items-start mb-10 relative">
+    <div className=" absolute pc:hidden top-[14vh] px-3 h-[6vh] w-[100px] bg-gray-300 flex justify-start items-center rounded-[50px] -right-16">
+          <FiChevronDown
+            onClick={() => setProfileOn(!profileOn)}
+            className={` ${
+              profileOn ? "-rotate-90" : " rotate-90"
+            } h-[20px] tablet:bottom-0 transition-all hover:scale-125 cursor-pointer z-50`}
+          />
+        </div>
+      <ProNavbar className={"hidden pc:block absolute z-40 top-[14vh] right-0 pc:sticky pc:top-[15%] ml-3 mb-52"} />
+      {profileOn &&  <ProNavbar className={"absolute cd:hidden z-40 top-[14vh] right-0 ml-3 mb-52 bg-white"} />}
       {/* left */}
-      <div className="relative -left-[3.8rem] h-[88vh] w-[30rem] mt-[6rem] border-r-[0.1px] pt-5 border-r-black/60 ml-3">
+      <div className="relative w-full pc:-left-[3.8rem] pc:h-[88vh] pc:w-[30rem] mt-[6rem] pc:border-r-[0.1px] pt-5 pc:border-r-black/60 pc:ml-3">
         <ProfileImage
           userData={userData}
           className={`flex flex-col gap-2 bg-white mt-4 mr-[30px]`}
         />
       </div>
       {/* right */}
-      <div className="mt-28 bg-white h-[100%] w-[54vw] mb-10 pr-14">
-        <div className="flex flex-col gap-4 mt-3 -ml-4">
+      <div className="mt-28 bg-white h-[100%] pc:w-[54vw] mb-10 pc:pr-14">
+        <div className="flex flex-col gap-4 mt-3 mx-10 pc:mx-0 pc:-ml-4">
           <div className="text-3xl mt-2">Achievements</div>
           {/* circles */}
-          <div className="  w-full flex flex-wrap gap-2">
+          <div className="  w-full flex flex-col laptop:flex-row flex-wrap gap-2  tablet:absolute laptop:relative top-[10vh] laptop:top-0">
             <LeaderBoardTab
               className={
-                " text-[#6d6b6b] font-playpen relative cursor-pointer flex w-[23%] flex-col gap-2 items-center justify-center  px-3 py-[5px] border-[#a09f9f] rounded-[3px]"
+                " text-[#6d6b6b] font-playpen relative cursor-pointer flex pc:w-[23%] laptop:flex-col gap-2 items-center justify-center  tablet:px-3 py-[5px] border-[#a09f9f] rounded-[3px]"
               }
-              className1={`h-[60px] w-[60px]  rounded-[100%] border-2 border-[#ffffff]`}
+              className1={`h-[60px] w-[60px] rounded-[100%] border-2 border-[#ffffff]`}
             />
           </div>
           {/* tracks */}
-          <div className="flex flex-row gap-3 justify-start mt-5">
+          <div className="flex flex-col tablet:flex-row gap-3 justify-start mt-5">
             <div
-              className="h-[8rem] w-[15rem] bg-[rgb(252,251,247)] rounded-xl text-start pl-7 pt-4 flex flex-col gap-2"
+              className="pc:h-[8rem] pc:w-[15rem] bg-[rgb(252,251,247)] rounded-xl text-start px-4 py-4 flex flex-col gap-2"
               style={{
                 boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
                 borderRadius: "5px",
@@ -56,7 +65,7 @@ const Profile = () => {
               </h1>
             </div>
             <div
-              className="h-[8rem] w-[15rem] bg-[rgb(252,251,247)] rounded-xl text-start pl-7 pt-4 flex flex-col gap-2"
+              className="pc:h-[8rem] pc:w-[15rem] bg-[rgb(252,251,247)] rounded-xl text-start px-7 py-4 flex flex-col gap-2"
               style={{
                 boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
                 borderRadius: "5px",
@@ -66,7 +75,7 @@ const Profile = () => {
               <h1 className="text-4xl">32</h1>
             </div>
             <div
-              className="h-[8rem] w-[15rem] bg-[rgb(252,251,247)] rounded-xl text-start pl-7 pt-4 flex flex-col gap-2"
+              className="pc:h-[8rem] pc:w-[15rem] bg-[rgb(252,251,247)] rounded-xl text-start px-7 py-4 flex flex-col gap-2"
               style={{
                 boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
                 borderRadius: "5px",

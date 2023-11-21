@@ -59,7 +59,7 @@ const AllCourses = ({userData}) => {
     <div>
     <ToastContainer/>
         {allCourses ? (
-            <div  className=" font-mono flex flex-row mx-[4rem] overflow-x-auto overflow-y-hidden whitespace-nowrap rounded-2xl">
+            <div  className=" font-mono flex flex-row laptop:mx-[4rem] overflow-x-auto overflow-y-hidden whitespace-nowrap rounded-2xl">
                 {allCourses.map((item,index) => (
                     <Tilt key={index} options={{ scale: 1 }} >
                     <Zoom in={course}>

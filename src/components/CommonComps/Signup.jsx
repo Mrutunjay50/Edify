@@ -63,18 +63,18 @@ const Signup = () => {
 
 
   return (
-    <div className="relative bg-[rgb(242,241,236)] flex flex-row justify-around rounded-b-3xl h-[160vh]">
+    <div className="relative bg-[rgb(242,241,236)] flex flex-col pc:flex-row justify-center laptop:justify-around rounded-b-3xl h-[160vh]">
       {/* Left */}
-      <div className="mt-[16%] mr-[5rem] p-8">
+      <div className="mt-[16%] mr-[5rem] p-8 hidden z-0 pc:block">
         <img
           src={signup}
           alt=""
-          className="w- full h-[100vh] rounded-3xl"
+          className="w- full pc:h-[100vh] rounded-3xl"
         ></img>
       </div>
 
       {/* right */}
-      <div className="flex flex-col gap-6 mt-[12%] mr-[15%] w-[60vh]">
+      <div className="flex flex-col gap-6 -mt-20 pc:mt-[12%] mx-10 pc:mr-[15%] w-[full] pc:w-[60vh] z-10">
         <div className="text-5xl font-mono text-black text-center mb-6">
           Signup
         </div>
@@ -83,14 +83,14 @@ const Signup = () => {
           name="username"
           value={register.username}
           onChange={handleRegister}
-          className="border-b-[1px] border-black bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
+          className="border-b-[1px] text-2xl border-black bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
         ></input>
         <div className="text-2xl text-black mr-32">My Name is</div>
         <input
           name="fullname"
           value={register.fullname}
           onChange={handleRegister}
-          className="border-b-[1px] border-black bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
+          className="border-b-[1px] text-2xl border-black bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
         ></input>
         <div className="text-2xl text-black mr-32">I Study in</div>
         <select
@@ -98,7 +98,7 @@ const Signup = () => {
           defaultValue=""
           onClick={setCoOrSc}
           onChange={handleRegister}
-          className="w-full bg-transparent border-b-[1px] border-black -mt-3 text-[18px] font-semibold focus:outline-none"
+          className="w-full bg-transparent text-2xl border-b-[1px] border-black -mt-3 text-[18px] font-semibold focus:outline-none"
         >
           <option value="">choose</option>
           <option value="school">school</option>
@@ -110,7 +110,7 @@ const Signup = () => {
             name="schoolstudent"
             defaultValue=""
             onChange={handleRegister}
-            className="w-full bg-transparent border-b-[1px] border-black -mt-3 text-[18px] font-semibold focus:outline-none"
+            className="w-full bg-transparent text-2xl border-b-[1px] border-black -mt-3 text-[18px] font-semibold focus:outline-none"
           >
             <option value="">choose</option>
             <option value="6">6th</option>
@@ -140,7 +140,7 @@ const Signup = () => {
           autoComplete="off"
           value={register.email}
           onChange={handleRegister}
-          className="border-b-[1px] border-black bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
+          className="border-b-[1px] text-2xl border-black bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
         ></input>
         <div className="text-2xl text-black mr-32">Set My Password to</div>
         <input
@@ -149,7 +149,7 @@ const Signup = () => {
           autoComplete="off"
           value={register.password}
           onChange={handleRegister}
-          className="border-b-[1px] border-black bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
+          className="border-b-[1px] border-black text-2xl bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
         ></input>
         <div className="text-2xl text-black mr-32">My Password is</div>
         <input
@@ -159,7 +159,7 @@ const Signup = () => {
           value={register.cPass}
           onChange={handleRegister}
           onKeyDown={handleKeyDown} 
-          className="border-b-[1px] border-black bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
+          className="border-b-[1px] border-black text-2xl bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
         ></input>
         <button
           onClick={handleSubmit}

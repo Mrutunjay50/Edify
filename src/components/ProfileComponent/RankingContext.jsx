@@ -12,6 +12,7 @@ export const RankingProvider = ({ children }) => {
   const [selectedTab, setSelectedTab] = useState("Platinum");
   const { userData } = useAuth();
   const [userRanking, setUserRanking] = useState();
+  const [profileOn, setProfileOn] = useState(false);
 
 
   const getData = async (course) => {
@@ -98,7 +99,7 @@ export const RankingProvider = ({ children }) => {
   };
 
   return (
-    <RankingContext.Provider value={{socket, userRanking, rankingData, setRankingData, getTopScorer, handleTabClick, filterDataByTab, calculateRank, selectedTab, setSelectedTab }}>
+    <RankingContext.Provider value={{profileOn, setProfileOn, socket, userRanking, rankingData, setRankingData, getTopScorer, handleTabClick, filterDataByTab, calculateRank, selectedTab, setSelectedTab }}>
       {children}
     </RankingContext.Provider>
   );

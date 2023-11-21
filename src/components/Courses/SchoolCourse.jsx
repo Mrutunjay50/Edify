@@ -66,21 +66,21 @@ const SchoolCourse = ({
 
   return (
     <div>
-      <div className="relative mt-[12%]">
-        <span className="font-mono text-start ml-20 text-5xl">
+      <div className="relative mt-[14vh] laptop:mt-[12%]">
+        <span className="font-mono text-start mx-8 laptop:mx-20 text-2xl tablet:text-3xl pc:text-5xl">
           Let's take one step forward towards... <br />
         </span>
-        <div className="ml-20 p-3 italic mb-10 mt-2 font-mono text-6xl text-[rgb(46,81,167)]">
+        <div className="mx-8 laptop:mx-20 p-3 italic mb-10 mt-2 font-mono text-6xl text-[rgb(46,81,167)]">
           LEARNING!!
         </div>
       </div>
-      <div className=" flex flex-col relative w-[90%] left-16 mb-8">
+      <div className=" flex flex-col relative w-[100%] justify-center items-center mb-8 px-2 tablet:px-12">
         {school &&
           school.chapter &&
           school.chapter.map((item, index) => (
             <div
               key={index}
-              className="flex-[5] bg-[rgb(249,249,245)] mx-3 my-2 p-5 text-black/80 text-xl rounded-sm relative"
+              className="flex-[5] w-full bg-[rgb(249,249,245)] mx-3 my-2 p-5 text-black/80 text-xl rounded-sm relative"
             >
               {recentItems?.map((recent, recentIndex) => {
                 if (
@@ -118,10 +118,10 @@ const SchoolCourse = ({
                 {item.videos.map((items, index) => (
                   <div
                     key={index}
-                    className="flex bg-white m-2 my-6 p-2 rounded-2xl cursor-pointer text-blue-600"
+                    className="flex flex-col laptop:flex-row bg-white m-2 my-6 p-2 rounded-2xl cursor-pointer text-blue-600"
                   >
                     {/* Left-VideoSection */}
-                    <div className="p-4 mr-[5rem] ml-10 rounded-lg shadow-black shadow-md mb-5 mt-4 w-[610px] h-[375px]">
+                    <div className=" p-2 pc:p-4 mr-[5rem] pc:ml-10 rounded-lg shadow-black shadow-md mb-5 pc:mt-4 pc:w-[610px] h-[250px] pc:h-[375px]">
                       <Tube
                         videoId={extractVideoId(items.url)}
                         handleVideoComplete={handleVideoComplete}
