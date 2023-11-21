@@ -31,10 +31,10 @@ const Profile = () => {
       <ProNavbar className={"hidden pc:block absolute z-40 top-[14vh] right-0 pc:sticky pc:top-[15%] ml-3 mb-52"} />
       {profileOn &&  <ProNavbar className={"absolute cd:hidden z-40 top-[14vh] right-0 ml-3 mb-52 bg-white"} />}
       {/* left */}
-      <div className="relative w-full pc:-left-[3.8rem] pc:h-[88vh] pc:w-[30rem] mt-[6rem] pc:border-r-[0.1px] pt-5 pc:border-r-black/60 pc:ml-3">
+      <div className="relative w-full pc:-left-[3.8rem] pc:h-[88vh] pc:w-[30rem] mt-[6rem] pc:border-r-[0.1px] pl-10 laptop:pl-24 pt-5 pc:border-r-black/60 pc:ml-3">
         <ProfileImage
           userData={userData}
-          className={`flex flex-col gap-2 bg-white mt-4 mr-[30px]`}
+          className={`flex flex-col gap-2 mt-4 mr-[30px]`}
         />
       </div>
       {/* right */}
@@ -42,7 +42,7 @@ const Profile = () => {
         <div className="flex flex-col gap-4 mt-3 mx-10 pc:mx-0 pc:-ml-4">
           <div className="text-3xl mt-2">Achievements</div>
           {/* circles */}
-          <div className="  w-full flex flex-col laptop:flex-row flex-wrap gap-2  tablet:absolute laptop:relative top-[10vh] laptop:top-0">
+          <div className="  w-full flex flex-col laptop:flex-row flex-wrap gap-2 tablet:absolute laptop:relative top-[24vh] laptop:top-0">
             <LeaderBoardTab
               className={
                 " text-[#6d6b6b] font-playpen relative cursor-pointer flex pc:w-[23%] laptop:flex-col gap-2 items-center justify-center  tablet:px-3 py-[5px] border-[#a09f9f] rounded-[3px]"
