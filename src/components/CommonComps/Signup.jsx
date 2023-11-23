@@ -170,7 +170,7 @@ const Signup = () => {
         <h1 className="text-black/60 text-center text-lg font-sans group cursor-pointer">
           Already a member!?
           <span className="cursor-pointer text-black/60 text-lg font-sans group-hover:text-blue-500 group-hover:underline">
-            <Link to="/Edify/login" > Login</Link>
+            <Link to="/login" > Login</Link>
           </span>
         </h1>
       </div>

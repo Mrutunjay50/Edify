@@ -71,7 +71,7 @@ const CoursesMain = () => {
                 <Zoom in={soo}>
                   {userData && userData.inWhat === "school" ? (
                     <Link
-                      to={`/Edify/school/${userData.schoolstudent}/${item.subjectname
+                      to={`/school/${userData.schoolstudent}/${item.subjectname
                         .replaceAll(" ", "")}`}
                     >
                       <div className="h-[13rem] w-[15rem] bgCourse ml-4 rounded-2xl cursor-pointer shadow-lg shadow-slate-500 flex items-center justify-center">
@@ -82,7 +82,7 @@ const CoursesMain = () => {
                     </Link>
                   ) : (
                     <Link
-                      to={`/Edify/college/${userData.collegestudent}/${item.name
+                      to={`/college/${userData.collegestudent}/${item.name
                         .replaceAll(" ", "")}`}
                     >
                       <div className="h-[13rem] w-[15rem] bgCourse ml-4 rounded-2xl cursor-pointer shadow-lg shadow-slate-500 flex items-center justify-center">

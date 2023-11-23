@@ -24,7 +24,7 @@ const Home = () => {
                 </div>
               </div>
               {userData && userData ? <div className='flex justify-center items-center bg-transparent text-center px-2 rounded-md mt-12 text-3xl font-mono border-white text-slate-800 shadow-2xl border-b-2 pb-2'>Welcome {userData.fullname} !!!</div> : 
-              <Link to='/Edify/Signup'><button className='h-14 w-[15rem] pb-1 rounded-lg hover:bg-transparent bg-[#211b3e] text-white text-center mt-12 text-2xl hover:border-[1px] hover:border-slate-800 hover:text-slate-800'>  Sign up  </button></Link>
+              <Link to='/Signup'><button className='h-14 w-[15rem] pb-1 rounded-lg hover:bg-transparent bg-[#211b3e] text-white text-center mt-12 text-2xl hover:border-[1px] hover:border-slate-800 hover:text-slate-800'>  Sign up  </button></Link>
               }
           </div>
         </div>

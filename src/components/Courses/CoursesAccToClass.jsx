@@ -71,7 +71,7 @@ const CoursesAccToClass = () => {
                       <Zoom in={course}>
                         {schoolData === userData.schoolstudent ? (
                           <Link
-                            to={`/Edify/school/${
+                            to={`/school/${
                               userData.schoolstudent
                             }/${item.subjectname
                               .replaceAll(" ", "")
@@ -114,7 +114,7 @@ const CoursesAccToClass = () => {
                       <Zoom in={course}>
                         {collegeData === userData.collegestudent ? (
                           <Link
-                            to={`/Edify/college/${userData.collegestudent}/${item.name.replaceAll(" ", "")}`}
+                            to={`/college/${userData.collegestudent}/${item.name.replaceAll(" ", "")}`}
                           >
                             <div className="h-[13rem] w-[15rem] bgCourse ml-4 rounded-2xl cursor-pointer shadow-lg shadow-slate-500 flex items-center justify-center">
                               <div className="overflow-hidden whitespace-break-spaces text-white/80 text-lg text-center">

@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
         // Token has expired, you may want to redirect to the login page
         localStorage.removeItem("isAuthenticated");
         setUserData(null);
-        navigate("/Edify/login");
+        navigate("/login");
       }
     }
   }, []);

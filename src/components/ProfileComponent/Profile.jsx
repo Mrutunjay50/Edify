@@ -93,7 +93,7 @@ const Profile = () => {
                 const itemArr = item.split(" ");
                 return (
                   <Link
-                    to={`/Edify/${itemArr[0]}/${itemArr[1]}/${itemArr[2]}`}
+                    to={`/${itemArr[0]}/${itemArr[1]}/${itemArr[2]}`}
                     onClick={() => setOpenedAccordion(itemArr[3])}
                     key={index}
                     className="hover:scale-105 transition-all duration-300 ease-in-out h-[5rem] w-1/3 bg-[#ffffff] mx-2 my-2 rounded-md border-r-[2px] border-l-[2px] border-[#a09f9f]"
@@ -149,7 +149,7 @@ const Profile = () => {
                           borderRadius: "5px",
                         }}
                       >
-                        <Link to={`/Edify/${inwhat}/${course}/${title[0]}`}>
+                        <Link to={`/${inwhat}/${course}/${title[0]}`}>
                           <div className="h-[5.5rem] w-[14rem] border-r-2 border-l-2 border-blue-300 rounded-[5px] flex flex-col px-2 items-center justify-around cursor-pointer">
                             <span className=" text-[12px]">
                               {title[1].split(/(?=[A-Z])/).join(" ")}

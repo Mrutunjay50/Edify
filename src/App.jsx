@@ -52,16 +52,16 @@ const App = () => {
       )}
       <RankingProvider >
         <Routes>
-          <Route path="/Edify" element={<Home />} />
-          <Route path="/Edify/about" element={<About />} />
-          <Route path="/Edify/courses" element={<CoursesMain />} />
-          <Route path="/Edify/studymaterial" element={<StudyMaterial />} />
-          <Route path="/Edify/login" element={<Login />} />
-          <Route path="/Edify/signup" element={<Signup />} />
-          <Route path="/Edify/contact" element={<Contact />} />
-          <Route path="/Edify/testcreation" element={<TestCraetionForm />} />
-          <Route path="/Edify/scoreupdator" element={<ScoreUpdater />} />
-          <Route path="Edify" element={<ProtectedRoute />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/courses" element={<CoursesMain />} />
+          <Route path="/studymaterial" element={<StudyMaterial />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/testcreation" element={<TestCraetionForm />} />
+          <Route path="/scoreupdator" element={<ScoreUpdater />} />
+          <Route path="" element={<ProtectedRoute />}>
             <Route path="typechecker" element={<MainType />} />
             <Route path="settings" element={<AccountSetting />} />
             <Route path="editprofile" element={<EditProfile />} />

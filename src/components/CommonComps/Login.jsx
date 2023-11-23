@@ -40,7 +40,7 @@ const Login = () => {
       localStorage.setItem("isAuthenticated", true);
       document.cookie = `jwt=` + token;
 
-      navigate("/Edify");
+      navigate("/");
     } catch (error) {
       console.log("Unable to login:", error);
     }
@@ -88,7 +88,7 @@ const Login = () => {
         >
           Login
         </button>
-        <Link to="/Edify/signup">
+        <Link to="/signup">
           <h1 className="text-black/60 text-center text-lg font-sans cursor-pointer hover:underline hover:text-blue-600">
             Not a member!?
             <span className="cursor-pointer  text-lg font-sans">Signup</span>

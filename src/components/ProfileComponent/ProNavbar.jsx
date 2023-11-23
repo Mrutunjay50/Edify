@@ -8,26 +8,26 @@ const ProNavbar = ({className}) => {
         document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         setUserData(null);
         localStorage.removeItem("isAuthenticated");
-        navigate('/Edify');
+        navigate('/');
       };
   return (
     <div className={className}>
         <div className="h-[41vh] w-[210px] bg-inherit border-r-[0.1px] ml-6 border-black/60  font-playpen">
             <div className="flex flex-col items-start ml-1">
                 <div className="hover:border-y-[0.1px] hover:border-black/70 w-[90%] p-4 cursor-pointer">
-                    <Link to='/Edify/profile'>Profile</Link>
+                    <Link to='/profile'>Profile</Link>
                 </div>
                 <div className="hover:border-y-[0.1px] hover:border-black/70 w-[90%] p-4 cursor-pointer">
-                    <Link to='/Edify/leaderboard'>LeaderBoard</Link>
+                    <Link to='/leaderboard'>LeaderBoard</Link>
                 </div>
                 <div className="hover:border-y-[0.1px] hover:border-black/70 w-[90%] p-4 cursor-pointer">
-                    <Link to='/Edify/editprofile'>Edit Profile</Link>
+                    <Link to='/editprofile'>Edit Profile</Link>
                 </div>
                 <div className="hover:border-y-[0.1px] hover:border-black/70 w-[90%] p-4 cursor-pointer">
-                    <Link to='/Edify/settings'>Account Settings</Link>
+                    <Link to='/settings'>Account Settings</Link>
                 </div>
                 <div onClick={handleLogout} className="hover:border-y-[0.1px] hover:border-black/70 w-[90%] p-4 cursor-pointer">
-                <Link to='/Edify'>Logout</Link>
+                <Link to='/'>Logout</Link>
                 </div>
             </div>
         </div>
