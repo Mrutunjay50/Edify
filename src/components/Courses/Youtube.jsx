@@ -3,8 +3,8 @@ import Youtube from "react-youtube";
 
 const Tube = ({ videoId, handleVideoComplete, title, subject, index }) => {
   const opts = {
-    // width: "590",
-    // height: "355",
+    width: "590",
+    height: "355",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
@@ -18,7 +18,6 @@ const Tube = ({ videoId, handleVideoComplete, title, subject, index }) => {
         videoId={videoId}
         opts={opts}
         onEnd={() => handleVideoComplete(videoId, title, subject, index)}
-        className="w-[590px] h-[355px]"
       />
     </>
   );

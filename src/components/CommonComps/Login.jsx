@@ -52,7 +52,7 @@ const Login = () => {
     <div className="relative bg-[rgb(242,241,236)] w-full h-[100vh] laptop:h-[calc(100vh-10vh)] flex flex-col laptop:flex-row justify-between tablet:justify-around items-center rounded-b-3xl font-roboto mb-1 mt-[10vh]">
       {/* Left */}
       <div className="">
-        <img src={login2} alt="" className="w-full pc:h-[100vh] absolute laptop:relative z-0"></img>
+        <img src={login2} alt="" className=" w-[350px] laptop:w-full pc:h-[100vh] absolute laptop:relative z-0 right-0"></img>
       </div>
 
       {/* right */}

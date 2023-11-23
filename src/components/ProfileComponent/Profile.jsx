@@ -20,7 +20,7 @@ const Profile = () => {
 
   return (
     <div className="h-full flex flex-col pc:flex-row pc:items-start mb-10 relative">
-    <div className=" absolute pc:hidden top-[14vh] px-3 h-[6vh] w-[100px] bg-gray-300 flex justify-start items-center rounded-[50px] -right-16">
+    <div className=" absolute pc:hidden top-[14vh] px-3 h-[6vh] w-[40px] bg-gray-300 flex justify-start items-center rounded-l-[50px] right-0">
           <FiChevronDown
             onClick={() => setProfileOn(!profileOn)}
             className={` ${
@@ -124,7 +124,7 @@ const Profile = () => {
           completedItems?.length === 0 ? (
             <div>No Cources Completed Yet</div>
           ) : (
-            <div className="flex flex-row flex-wrap justify-start gap-5">
+            <div className="flex flex-row flex-wrap justify-start gap-5 overflow-y-scroll">
               {userData &&
                 userData.completedItems &&
                 userData.completedItems.map((item, index) => {

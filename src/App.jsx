@@ -52,6 +52,7 @@ const App = () => {
       )}
       <RankingProvider >
         <Routes>
+      <Route path="profile" element={<Profile />} />
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/courses" element={<CoursesMain />} />

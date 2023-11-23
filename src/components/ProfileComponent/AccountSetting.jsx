@@ -8,7 +8,7 @@ const AccountSetting = () => {
     <>
     <div className="h-[calc(100vh-14vh)] flex flex-row items-start mb-10 font-playpen mt-[14vh] relative">
     <div className="text-center text-[32px] font-playpen mb-10 absolute w-full top-5">Account Settings</div>
-    <div className=" absolute pc:hidden -top-10 px-3 h-[6vh] w-[100px] bg-gray-300 flex justify-start items-center rounded-[50px] -right-16">
+    <div className=" absolute pc:hidden -top-10 px-3 h-[6vh] w-[40px] bg-gray-300 flex justify-start items-center rounded-l-[50px] right-0">
           <FiChevronDown
             onClick={() => setProfileOn(!profileOn)}
             className={` ${

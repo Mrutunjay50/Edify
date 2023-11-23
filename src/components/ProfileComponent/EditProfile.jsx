@@ -101,7 +101,7 @@ const EditProfile = () => {
 
   return (
     <div className="flex flex-row items-start mb-10 w-full">
-    <div className=" absolute pc:hidden top-[14vh] px-3 h-[6vh] w-[100px] bg-gray-300 flex justify-start items-center rounded-[50px] -right-16">
+    <div className=" absolute pc:hidden top-[14vh] px-3 h-[6vh] w-[40px] bg-gray-300 flex justify-start items-center rounded-l-[50px] right-0">
           <FiChevronDown
             onClick={() => setProfileOn(!profileOn)}
             className={` ${

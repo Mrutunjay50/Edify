@@ -49,7 +49,7 @@ const Signup = () => {
         password,
         cPass,
       });
-      navigate("/Edify/login");
+      navigate("/login");
     } catch (error) {
       console.log("not able to register");
     }
@@ -63,13 +63,13 @@ const Signup = () => {
 
 
   return (
-    <div className="relative bg-[rgb(242,241,236)] flex flex-col pc:flex-row justify-center laptop:justify-around rounded-b-3xl h-[160vh]">
+    <div className="relative bg-[rgb(242,241,236)] flex flex-col laptop:flex-row justify-center laptop:justify-around rounded-b-3xl h-[160vh]">
       {/* Left */}
-      <div className="mt-[16%] mr-[5rem] p-8 hidden z-0 pc:block">
+      <div className="mt-[16%] laptop:mr-[5rem] absolute pc:relative p-8 z-0 pc:block top-10">
         <img
           src={signup}
           alt=""
-          className="w- full pc:h-[100vh] rounded-3xl"
+          className=" w-[450px] laptop:w-full  pc:h-[100vh] rounded-3xl "
         ></img>
       </div>
 
