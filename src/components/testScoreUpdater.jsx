@@ -15,7 +15,7 @@ const ScoreUpdater = () => {
 
   const getSchoolData = () => {
     axios
-      .get("http://localhost:8800/api/getschool")
+      .get("https://edify-backend-service.onrender.com/api/getschool")
       .then((response) => {
         const clams = response.data
           .filter((items) => items.classname === scoreData?.course)[0]
@@ -31,7 +31,7 @@ const ScoreUpdater = () => {
 
   const getCollegeData = () => {
     axios
-      .get("http://localhost:8800/api/getcollege")
+      .get("https://edify-backend-service.onrender.com/api/getcollege")
       .then((response) => {
         const clams = response.data
           .filter((items) => items.coursename === scoreData?.course)[0]
@@ -51,7 +51,7 @@ const ScoreUpdater = () => {
   };
 
   const getFormUrls = () => {
-    fetch("http://localhost:8800/api/fetchurl", {
+    fetch("https://edify-backend-service.onrender.com/api/fetchurl", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -73,7 +73,7 @@ const ScoreUpdater = () => {
   const handleSheetData = () =>{
     const {inWhat, course, subject} = scoreData;
     axios
-      .post("http://localhost:8800/getScoreFromSheets", {inWhat, course, subject, spreadSheetId})
+      .post("https://edify-backend-service.onrender.com/getScoreFromSheets", {inWhat, course, subject, spreadSheetId})
       .then((response) => {
         // Handle a successful response from the server, if needed
         console.log("Data sent successfully", response.data);

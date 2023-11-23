@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
       setToken(token)
 
       axios
-        .get("http://localhost:8800/auth/getUser",{
+        .get("https://edify-backend-service.onrender.com/auth/getUser",{
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json;  charset=UTF-8'

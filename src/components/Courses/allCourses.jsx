@@ -15,7 +15,7 @@ const AllCourses = ({userData}) => {
   
     const getSchoolData = () => {
       axios
-        .get("http://localhost:8800/api/getschool")
+        .get("https://edify-backend-service.onrender.com/api/getschool")
         .then((response) => {
           const clams = response.data.flatMap((item) =>
             item.subjects.map((subject) => subject.subjectname)
@@ -28,7 +28,7 @@ const AllCourses = ({userData}) => {
     };
     const getCollegeData = () => {
       axios
-        .get("http://localhost:8800/api/getcollege")
+        .get("https://edify-backend-service.onrender.com/api/getcollege")
         .then((response) => {
           const clams = response.data.flatMap((item) =>
             item.subjects.map((subject) => subject.name)

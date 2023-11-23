@@ -45,7 +45,7 @@ const ViewCourse = () => {
   
   // Function to trigger the Google Apps Script and get the JSON data
   const getFormUrls = () => {
-    fetch("http://localhost:8800/api/fetchurl", {
+    fetch("https://edify-backend-service.onrender.com/api/fetchurl", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -61,7 +61,7 @@ const ViewCourse = () => {
 
   const getSchoolData = () => {
     axios
-      .get("http://localhost:8800/api/getschool")
+      .get("https://edify-backend-service.onrender.com/api/getschool")
       .then((response) => {
         const classData = response.data
           .filter((item) => item.classname === course)[0]
@@ -78,7 +78,7 @@ const ViewCourse = () => {
 
   const getCollegeData = () => {
     axios
-      .get("http://localhost:8800/api/getcollege")
+      .get("https://edify-backend-service.onrender.com/api/getcollege")
       .then((response) => {
         const courseData = response.data
           .filter((item) => item.coursename === course)[0]
@@ -106,7 +106,7 @@ const ViewCourse = () => {
     try {
       if (title && time) {
         const response = await axios.put(
-          "http://localhost:8800/updaterecentseen",
+          "https://edify-backend-service.onrender.com/updaterecentseen",
           {
             studentId,
             clicked: `${inWhat} ${course} ${subject} ${title
@@ -138,7 +138,7 @@ const ViewCourse = () => {
   
     // Send a request to your backend API to store completion data
     axios
-      .put("http://localhost:8800/storeCompletion", {
+      .put("https://edify-backend-service.onrender.com/storeCompletion", {
         videoId: videoId,
         userId: userData._id, // Assuming you have user data available
         title : `${subject} ${title.split(" ").join("")}`

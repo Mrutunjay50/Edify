@@ -61,7 +61,7 @@ const Navbar = () => {
               <div className="h-[2.5rem] w-[2.6rem] rounded-full cursor-pointer bg-white">
                 {userData.profilePicture ? (
                   <img
-                    src={`http://localhost:8800/${userData.profilePicture}`}
+                    src={`https://edify-backend-service.onrender.com/${userData.profilePicture}`}
                     alt="Profile Picture"
                     className="w-full h-full object-cover object-top rounded-full"
                   />

@@ -18,9 +18,9 @@ const MyPDFComponent = ({ subject, title, inwhat, handleClick }) => {
 
   const createDownloadPDF = async () => {
     try {
-      await axios.post('http://localhost:8800/create-pdf', documentVal);
+      await axios.post('https://edify-backend-service.onrender.com/create-pdf', documentVal);
   
-      const response = await axios.get('http://localhost:8800/fetch-pdf', { responseType: "blob" });
+      const response = await axios.get('https://edify-backend-service.onrender.com/fetch-pdf', { responseType: "blob" });
       const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
       saveAs(pdfBlob, 'newPdf.pdf');
     } catch (error) {

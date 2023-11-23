@@ -81,7 +81,7 @@ const EditProfile = () => {
       formData.append("_id", userData._id);
       formData.append("password", userData.password);
       const response = await axios.put(
-        `http://localhost:8800/update/${userData._id}`,
+        `https://edify-backend-service.onrender.com/update/${userData._id}`,
         formData,
         {
           headers: {
@@ -141,7 +141,7 @@ const EditProfile = () => {
                   <div className="shrink-0">
                     {userData.profilePicture ? (
                       <img
-                        src={`http://localhost:8800/${userData.profilePicture}`}
+                        src={`https://edify-backend-service.onrender.com/${userData.profilePicture}`}
                         alt="Profile Picture"
                         className="w-16 h-16 object-cover object-top rounded-full"
                       />

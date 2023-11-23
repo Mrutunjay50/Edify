@@ -18,7 +18,7 @@ const CoursesMain = () => {
   const getCourseData = (inwhat) => {
     if (inwhat === "school") {
       axios
-        .get("http://localhost:8800/api/getschool")
+        .get("https://edify-backend-service.onrender.com/api/getschool")
         .then((response) => {
           const clams = response.data
             .filter((item) => item.classname === userData?.schoolstudent)
@@ -30,7 +30,7 @@ const CoursesMain = () => {
         });
     } else if (inwhat === "college") {
       axios
-        .get("http://localhost:8800/api/getcollege")
+        .get("https://edify-backend-service.onrender.com/api/getcollege")
         .then((response) => {
           const clams = response.data
             .filter((item) => item.coursename === userData?.collegestudent)

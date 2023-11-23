@@ -26,7 +26,7 @@ const Login = () => {
   const handleSubmit = async (event) => {
     const { email, password } = login;
     try {
-      const response = await axios.post("http://localhost:8800/auth/login", {
+      const response = await axios.post("https://edify-backend-service.onrender.com/auth/login", {
         email,
         password,
       });

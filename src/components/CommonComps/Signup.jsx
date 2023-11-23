@@ -39,7 +39,7 @@ const Signup = () => {
       cPass,
     } = register;
     try {
-      await axios.post("http://localhost:8800/auth/register", {
+      await axios.post("https://edify-backend-service.onrender.com/auth/register", {
         username,
         fullname,
         inWhat,

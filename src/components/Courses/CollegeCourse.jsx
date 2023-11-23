@@ -32,7 +32,7 @@ const CollegeCourse = ({
   const handleClick = async (incrementValue) => {
     try {
       // Make a POST request to your backend route to update action scores
-      const response = await axios.post("http://localhost:8800/updateActionScores",{
+      const response = await axios.post("https://edify-backend-service.onrender.com/updateActionScores",{
         userId: userData._id,
         incrementVal : incrementValue
       },
