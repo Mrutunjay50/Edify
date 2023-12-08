@@ -9,6 +9,8 @@ import boy2 from "./boy2.jpg";
 import boy3 from "./boy3.jpg";
 import homepage from './homepage.jpg'
 import BotPaper from './BotPaper.jpg'
+import RegisterImg from './registerImg.png';
+import TeacherRegister from './TeacherRegister.png';
+import StudentRegister from './StudentRegister2.png';
 
-
-export { paraImg, login2, signup, about1, about2, about3, boy1, boy2, boy3 , homepage, BotPaper};
+export { paraImg, login2, signup, about1, about2, about3, boy1, boy2, boy3 , homepage, BotPaper, RegisterImg, TeacherRegister, StudentRegister};

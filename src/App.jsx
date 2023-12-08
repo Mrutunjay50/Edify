@@ -4,7 +4,7 @@ import {
   EditProfile,
   LeaderBoard,
   Profile,
-} from "./components/ProfileComponent";
+} from "./components/Student/ProfileComponent";
 import {
   Home,
   Navbar,
@@ -26,7 +26,7 @@ import TestCraetionForm from "./components/testCraetionForm";
 import { useAuth } from "./components/CommonComps/LoginContext";
 import { BsChatRightFill } from "react-icons/bs";
 import { useState } from "react";
-import { RankingProvider } from "./components/ProfileComponent/RankingContext";
+import { RankingProvider } from "./components/Student/ProfileComponent/RankingContext";
 import ScoreUpdater from "./components/testScoreUpdater";
 
 

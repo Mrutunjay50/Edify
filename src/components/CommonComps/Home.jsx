@@ -1,7 +1,7 @@
 import { Parallax } from "react-parallax";
 import { homepage } from "../../assets";
 import { Link } from "react-router-dom";
-import CoursesMain from '../Courses/CoursesMain';
+import CoursesMain from '../Student/Courses/CoursesMain';
 import {useAuth} from './LoginContext';
 
 const Home = () => {

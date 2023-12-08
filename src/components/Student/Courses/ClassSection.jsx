@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useAuth } from "../CommonComps/LoginContext"; // Replace with the actual auth library import
+import { useAuth } from "../../CommonComps/LoginContext"; // Replace with the actual auth library import
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useCourse } from "./courseContext";
@@ -19,7 +19,8 @@ function ClassSecComp() {
 
   function getSchoolData() {
     axios
-      .get("https://edify-backend-service.onrender.com/api/getschool")
+      // .get("https://edify-backend-service.onrender.com/api/getschool")
+      .get("http://localhost:8800/api/getschool")
       .then((response) => {
         const classNames = response.data.flatMap((item) => item.classname);
         setSchool(classNames);
@@ -31,7 +32,8 @@ function ClassSecComp() {
 
   function getCollegeData() {
     axios
-      .get("https://edify-backend-service.onrender.com/api/getcollege")
+      // .get("https://edify-backend-service.onrender.com/api/getcollege")
+      .get("http://localhost:8800/api/getcollege")
       .then((response) => {
         const courseNames = response.data.flatMap((item) => item.coursename);
         setCollege(courseNames);

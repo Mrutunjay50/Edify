@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../CommonComps/LoginContext";
+import { useAuth } from "../../CommonComps/LoginContext";
 
 const ProNavbar = ({className}) => {
     const navigate = useNavigate();

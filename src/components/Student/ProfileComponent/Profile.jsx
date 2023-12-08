@@ -1,5 +1,5 @@
 import ProNavbar from "./ProNavbar";
-import { useAuth } from "../CommonComps/LoginContext";
+import { useAuth } from "../../CommonComps/LoginContext";
 import LastSeen from "./LastSeen";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";

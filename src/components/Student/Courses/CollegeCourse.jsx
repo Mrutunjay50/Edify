@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Tube from "./Youtube";
-import { useAuth } from "../CommonComps/LoginContext";
+import { useAuth } from "../../CommonComps/LoginContext";
 import LastSeen from "../ProfileComponent/LastSeen";
 import MyPDFComponent from "./MyPDF";
 import axios from "axios";

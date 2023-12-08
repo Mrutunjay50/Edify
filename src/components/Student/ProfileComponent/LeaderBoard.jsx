@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ProNavbar from "./ProNavbar";
-import { useAuth } from "../CommonComps/LoginContext.jsx";
+import { useAuth } from "../../CommonComps/LoginContext.jsx";
 import LeaderBoardTab from "./LeaderBoardTab.jsx";
 import { useRanking } from "./RankingContext.jsx";
 import { FiChevronDown } from "react-icons/fi";

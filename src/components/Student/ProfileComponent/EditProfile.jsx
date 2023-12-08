@@ -1,15 +1,15 @@
 import { useEffect } from "react";
-import ProNavbar from "./ProNavbar";
+import ProNavbar from "./ProNavbar.jsx";
 import {
   AiFillInstagram,
   AiFillTwitterCircle,
   AiFillLinkedin,
 } from "react-icons/ai";
 import { FiChevronDown } from "react-icons/fi";
-import { useAuth } from "../CommonComps/LoginContext";
+import { useAuth } from "../../CommonComps/LoginContext.jsx";
 import { useState } from "react";
 import axios from "axios";
-import ProfileImage from "./ProfileImage";
+import ProfileImage from "./ProfileImage.jsx";
 import { useRanking } from "./RankingContext.jsx";
 
 const EditProfile = () => {
@@ -81,7 +81,8 @@ const EditProfile = () => {
       formData.append("_id", userData._id);
       formData.append("password", userData.password);
       const response = await axios.put(
-        `https://edify-backend-service.onrender.com/update/${userData._id}`,
+        // `https://edify-backend-service.onrender.com/update/${userData._id}`,
+        `http://localhost:8800/update/${userData._id}`,
         formData,
         {
           headers: {

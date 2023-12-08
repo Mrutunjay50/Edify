@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "../CommonComps/LoginContext";
+import { useAuth } from "../../CommonComps/LoginContext";
 import SchoolCourse from "./SchoolCourse";
 import CollegeCourse from "./CollegeCourse";
 import { useRanking } from "../ProfileComponent/RankingContext";
@@ -45,7 +45,8 @@ const ViewCourse = () => {
   
   // Function to trigger the Google Apps Script and get the JSON data
   const getFormUrls = () => {
-    fetch("https://edify-backend-service.onrender.com/api/fetchurl", {
+    // fetch("https://edify-backend-service.onrender.com/api/fetchurl", {
+    fetch("http://localhost:8800/api/fetchurl", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -61,7 +62,8 @@ const ViewCourse = () => {
 
   const getSchoolData = () => {
     axios
-      .get("https://edify-backend-service.onrender.com/api/getschool")
+      // .get("https://edify-backend-service.onrender.com/api/getschool")
+      .get("http://localhost:8800/api/getschool")
       .then((response) => {
         const classData = response.data
           .filter((item) => item.classname === course)[0]
@@ -78,7 +80,8 @@ const ViewCourse = () => {
 
   const getCollegeData = () => {
     axios
-      .get("https://edify-backend-service.onrender.com/api/getcollege")
+      // .get("https://edify-backend-service.onrender.com/api/getcollege")
+      .get("http://localhost:8800/api/getcollege")
       .then((response) => {
         const courseData = response.data
           .filter((item) => item.coursename === course)[0]

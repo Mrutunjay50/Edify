@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Tilt } from "react-tilt";
 import Zoom from "@mui/material/Zoom";
 import axios from "axios";
-import { useAuth } from "../CommonComps/LoginContext";
+import { useAuth } from "../../CommonComps/LoginContext";
 import { Link } from "react-router-dom";
 import { useCourse } from "./courseContext";
 import { toast } from "react-toastify";
