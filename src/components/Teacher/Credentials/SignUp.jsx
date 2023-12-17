@@ -12,6 +12,7 @@ const SignUpTeacher = () => {
     const [register, setRegister] = useState({
       username: "",
       fullname: "",
+      classes : "",
       email: "",
       password: "",
       cPass: "",
@@ -25,15 +26,17 @@ const SignUpTeacher = () => {
       const {
         username,
         fullname,
+        classes,
         email,
         password,
         cPass,
       } = register;
       try {
         // await axios.post("https://edify-backend-service.onrender.com/auth/register", {
-        await axios.post("http://localhost:8800/auth/register", {
+        await axios.post("http://localhost:8800/auth/registerteacher", {
           username,
           fullname,
+          classes,
           email,
           password,
           cPass,
@@ -80,6 +83,16 @@ const SignUpTeacher = () => {
             className="border-b-[1px] text-2xl border-black bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
           ></input>
           
+          <div className="text-2xl text-black mr-32">Can Teach</div>
+          <input
+            type="text"
+            name="classes"
+            autoComplete="off"
+            value={register.classes}
+            placeholder='if multiple write "7,4,2.."'
+            onChange={handleRegister}
+            className="border-b-[1px] text-2xl border-black bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
+          ></input>
           <div className="text-2xl text-black mr-32">This is my Email</div>
           <input
             type="email"

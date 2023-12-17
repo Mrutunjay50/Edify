@@ -6,6 +6,12 @@ import {
   Profile,
 } from "./components/Student/ProfileComponent";
 import {
+  // AccountSetting,
+  Dashboard,
+  EditProfileT,
+  ProfileT,
+} from "./components/Teacher/TeacherProfile";
+import {
   Home,
   Navbar,
   About,
@@ -29,7 +35,6 @@ import { useState } from "react";
 import { RankingProvider } from "./components/Student/ProfileComponent/RankingContext";
 import ScoreUpdater from "./components/testScoreUpdater";
 
-
 const App = () => {
   const { userData } = useAuth();
   const [chatIsOpen, setChatIsOpen] = useState(false);
@@ -50,28 +55,50 @@ const App = () => {
           </div>
         </>
       )}
-      <RankingProvider >
+      <RankingProvider>
         <Routes>
-      <Route path="profile" element={<Profile />} />
+          {/* <Route path="profile" element={<Profile />} /> */}
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/courses" element={<CoursesMain />} />
-          <Route path="/studymaterial" element={<StudyMaterial />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/testcreation" element={<TestCraetionForm />} />
-          <Route path="/scoreupdator" element={<ScoreUpdater />} />
-          <Route path="" element={<ProtectedRoute />}>
-            <Route path="typechecker" element={<MainType />} />
-            <Route path="settings" element={<AccountSetting />} />
-            <Route path="editprofile" element={<EditProfile />} />
-            <Route path="leaderboard" element={<LeaderBoard />} />
-            <Route path="profile" element={<Profile />} />
-            <Route element={<RouteGuard />}>
-              <Route path=":inWhat/:course/:subject" element={<ViewCourse />} />
-            </Route>
-          </Route>
+          
+          {userData && userData.profession === "teacher/professor" && (<>
+            <Route path="/testcreation" element={<TestCraetionForm />} />
+            <Route path="/scoreupdator" element={<ScoreUpdater />} />
+            <Route path="" element={<ProtectedRoute />}>
+                {/* <Route path="settings" element={<AccountSetting />} /> */}
+                <Route path="editprofile" element={<EditProfileT />} />
+                <Route path="profile" element={<ProfileT />} />
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route element={<RouteGuard />}>
+                  <Route
+                    path=":inWhat/:course/:subject"
+                    element={<ViewCourse />}
+                  />
+                </Route>
+              </Route>
+          </>)}
+          {userData && userData.profession === "student" && (
+            <>
+              <Route path="/courses" element={<CoursesMain />} />
+              <Route path="/studymaterial" element={<StudyMaterial />} />
+              <Route path="" element={<ProtectedRoute />}>
+                <Route path="typechecker" element={<MainType />} />
+                <Route path="settings" element={<AccountSetting />} />
+                <Route path="editprofile" element={<EditProfile />} />
+                <Route path="leaderboard" element={<LeaderBoard />} />
+                <Route path="profile" element={<Profile />} />
+                <Route element={<RouteGuard />}>
+                  <Route
+                    path=":inWhat/:course/:subject"
+                    element={<ViewCourse />}
+                  />
+                </Route>
+              </Route>
+            </>
+          )}
         </Routes>
       </RankingProvider>
       <Newsletter />

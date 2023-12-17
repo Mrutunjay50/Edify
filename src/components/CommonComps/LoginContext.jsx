@@ -26,9 +26,9 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       // Decode the token to get user data
       const decodedUserData = jwt_decode(token);
-      const {userId} = decodedUserData;
+      const {userId, profession} = decodedUserData;
 
-      setToken(token)
+      setToken(token);
 
       axios
         // .get("https://edify-backend-service.onrender.com/auth/getUser",{
@@ -38,7 +38,8 @@ export const AuthProvider = ({ children }) => {
             'Content-Type': 'application/json;  charset=UTF-8'
           },
           params: {
-            userId: userId
+            userId: userId,
+            profession : profession
           }
         })
         .then((response) => {
