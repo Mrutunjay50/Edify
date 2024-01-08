@@ -81,8 +81,8 @@ const EditProfile = () => {
       formData.append("_id", userData._id);
       formData.append("password", userData.password);
       const response = await axios.put(
-        // `https://edify-backend-service.onrender.com/update/${userData._id}`,
-        `http://localhost:8800/update/${userData._id}`,
+        `https://edify-backend-service.onrender.com/update/${userData._id}`,
+        // `http://localhost:8800/update/${userData._id}`,
         formData,
         {
           headers: {

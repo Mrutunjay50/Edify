@@ -32,8 +32,8 @@ const SignUpTeacher = () => {
         cPass,
       } = register;
       try {
-        // await axios.post("https://edify-backend-service.onrender.com/auth/register", {
-        await axios.post("http://localhost:8800/auth/registerteacher", {
+        await axios.post("https://edify-backend-service.onrender.com/auth/registerteacher", {
+        // await axios.post("http://localhost:8800/auth/registerteacher", {
           username,
           fullname,
           classes,

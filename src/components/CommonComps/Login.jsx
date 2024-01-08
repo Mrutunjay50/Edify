@@ -29,8 +29,8 @@ const Login = () => {
     try {
       var response;
       if(profession === 'student'){
-      //  response = await axios.post("https://edify-backend-service.onrender.com/auth/login", {
-         response = await axios.post("http://localhost:8800/auth/loginstudent", {
+       response = await axios.post("https://edify-backend-service.onrender.com/auth/loginstudent", {
+        //  response = await axios.post("http://localhost:8800/auth/loginstudent", {
         email,
         password,
         profession
