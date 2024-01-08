@@ -27,13 +27,23 @@ const Login = () => {
   const handleSubmit = async (event) => {
     const { email, password, profession } = login;
     try {
-      // const response = await axios.post("https://edify-backend-service.onrender.com/auth/login", {
-      const response = await axios.post("http://localhost:8800/auth/login", {
+      var response;
+      if(profession === 'student'){
+      //  response = await axios.post("https://edify-backend-service.onrender.com/auth/login", {
+         response = await axios.post("http://localhost:8800/auth/loginstudent", {
         email,
         password,
         profession
       });
+      }else{
+         response = await axios.post("http://localhost:8800/auth/loginteacher", {
+        email,
+        password,
+        profession
+      });
+      }
       const { token, user } = response.data; // Extract token and user data
+      console.log(user);
       setUserData(user);
       setToken(token);
 
