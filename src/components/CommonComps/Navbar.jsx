@@ -7,7 +7,7 @@ const Navbar = () => {
   const { userData, setUserData } = useAuth();
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [showNavbar, setShowNavbar] = useState(true);
-  const [showMenu, setShowMenu] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +31,13 @@ const Navbar = () => {
     };
   }, [prevScrollPos]);
 
+  useEffect(() => {
+    if(userData) {
+      setShowMenu(true)
+    }else setShowMenu(false)
+  },[userData])
+
+  
   const handleLogout = () => {
     document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     localStorage.removeItem("isAuthenticated");

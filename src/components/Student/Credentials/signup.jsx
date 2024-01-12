@@ -3,9 +3,11 @@ import { useState } from "react";
 import { StudentRegister } from "../../../assets";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import GoogleSVG from "../../googleSVG";
 
 const SignupStudent = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
   const [register, setRegister] = useState({
     username: "",
     fullname: "",
@@ -15,6 +17,7 @@ const SignupStudent = () => {
     email: "",
     password: "",
     cPass: "",
+    profilePicture: "",
   });
 
   const handleRegister = (e) => {
@@ -28,29 +31,18 @@ const SignupStudent = () => {
   };
 
   const handleSubmit = async (event) => {
-    const {
-      username,
-      fullname,
-      inWhat,
-      schoolstudent,
-      collegestudent,
-      email,
-      password,
-      cPass,
-    } = register;
+
     try {
-      await axios.post("https://edify-backend-service.onrender.com/auth/registerstudent", {
-      // await axios.post("http://localhost:8800/auth/registerstudent", {
-        username,
-        fullname,
-        inWhat,
-        schoolstudent,
-        collegestudent,
-        email,
-        password,
-        cPass,
-      });
+      await axios.post(
+        "https://edify-backend-service.onrender.com/auth/registerstudent/?googleAuth=false",
+          // await axios.post("http://localhost:8800/auth/registerstudent/?googleAuth=false", 
+        {
+          ...register
+        }
+      );
+
       navigate("/login");
+
     } catch (error) {
       console.log("not able to register");
     }
@@ -157,7 +149,7 @@ const SignupStudent = () => {
           autoComplete="off"
           value={register.cPass}
           onChange={handleRegister}
-          onKeyDown={handleKeyDown} 
+          onKeyDown={handleKeyDown}
           className="border-b-[1px] border-black text-2xl bg-[rgb(242,241,236)] -mt-3 focus:outline-none"
         ></input>
         <button
@@ -166,10 +158,22 @@ const SignupStudent = () => {
         >
           Register
         </button>
+        <Link
+          to="/googlesignup"
+          className="border-2 rounded-md w-[100%] justify-center flex items-center py-1 cursor-pointer bg-white font-medium text-gray-800 text-[20px] text-center"
+        >
+          <>
+            <span className=" w-[10%] h-auto text-blue-200 mr-5">
+              <GoogleSVG />
+            </span>
+            Sign up with google
+          </>
+        </Link>
+
         <h1 className="text-black/60 text-center text-lg font-sans group cursor-pointer">
           Already a member!?
           <span className="cursor-pointer text-black/60 text-lg font-sans group-hover:text-blue-500 group-hover:underline">
-            <Link to="/login" > Login</Link>
+            <Link to="/login"> Login</Link>
           </span>
         </h1>
       </div>

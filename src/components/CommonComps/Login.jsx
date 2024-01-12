@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "./LoginContext";
 import { login2 } from "../../assets";
+import { useGoogleLogin } from "@react-oauth/google";
+import GoogleSVG from "../googleSVG";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -24,6 +26,32 @@ const Login = () => {
     }
   };
 
+
+  const handleGoogleLoginSuccess = async (credentialResponse) => {
+    const accessToken = credentialResponse.access_token;
+
+    try {
+      // signin user
+      const response = await axios
+      // .post("http://localhost:8800/auth/loginstudent", {
+        .post("https://edify-backend-service.onrender.com/auth/loginstudent", {
+        googleAccessToken: accessToken,
+      });
+      const {user, token} = response.data;
+      setUserData(user);
+      setToken(token);
+      localStorage.setItem("isAuthenticated", true);
+      document.cookie = `jwt=` + token;
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
+  const logins = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
+
+
   const handleSubmit = async (event) => {
     const { email, password, profession } = login;
     try {
@@ -31,9 +59,7 @@ const Login = () => {
       if(profession === 'student'){
        response = await axios.post("https://edify-backend-service.onrender.com/auth/loginstudent", {
         //  response = await axios.post("http://localhost:8800/auth/loginstudent", {
-        email,
-        password,
-        profession
+        ...login
       });
       }else{
          response = await axios.post("http://localhost:8800/auth/loginteacher", {
@@ -109,12 +135,23 @@ const Login = () => {
         >
           Login
         </button>
+        <div onClick={logins}
+            className="border-2 rounded-md w-[100%] justify-center flex items-center py-1 cursor-pointer bg-white font-medium text-gray-800 text-[20px] text-center"
+        >
+          <>
+            <span className=" w-[10%] h-auto text-blue-200 mr-5">
+              <GoogleSVG />
+            </span>
+            Sign up with google
+          </>
+        </div>
         <Link to="/signup">
           <h1 className="text-black/60 text-center text-lg font-sans cursor-pointer hover:underline hover:text-blue-600">
             Not a member!?
             <span className="cursor-pointer  text-lg font-sans">Signup</span>
           </h1>
         </Link>
+        
       </div>
     </div>
     </>

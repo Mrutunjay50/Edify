@@ -1,47 +1,28 @@
 import { Route, Routes } from "react-router-dom";
-import {
-  AccountSetting,
-  EditProfile,
-  LeaderBoard,
-  Profile,
-} from "./components/Student/ProfileComponent";
-import {
-  // AccountSetting,
-  Dashboard,
-  EditProfileT,
-  ProfileT,
-} from "./components/Teacher/TeacherProfile";
-import {
-  Home,
-  Navbar,
-  About,
-  CoursesMain,
-  ViewCourse,
-  StudyMaterial,
-  Login,
-  Signup,
-  Contact,
-  Newsletter,
-  Footer,
-  ChatBot,
-} from "./components";
+import React, { useState } from "react";
+import { BsChatRightFill } from "react-icons/bs";
+import { useAuth } from "./components/CommonComps/LoginContext";
+import { Navbar, Home, About, CoursesMain, ViewCourse, StudyMaterial, Login, Signup, Contact, Newsletter, Footer, ChatBot } from "./components";
 import ProtectedRoute from "./ProtectedRoute";
 import RouteGuard from "./RouteGuard";
 import MainType from "./components/TypeMaster/MainType";
 import TestCraetionForm from "./components/testCraetionForm";
-import { useAuth } from "./components/CommonComps/LoginContext";
-import { BsChatRightFill } from "react-icons/bs";
-import { useState } from "react";
 import { RankingProvider } from "./components/Student/ProfileComponent/RankingContext";
 import ScoreUpdater from "./components/testScoreUpdater";
+import { AccountSetting, EditProfile, LeaderBoard, Profile } from "./components/Student/ProfileComponent";
+import { Dashboard, EditProfileT, ProfileT } from "./components/Teacher/TeacherProfile";
+import GoogleStPopUp from './components/Student/Credentials/GoogleStPopUp'
 
 const App = () => {
   const { userData } = useAuth();
   const [chatIsOpen, setChatIsOpen] = useState(false);
+  // Check if the current route is '/googlesignup'
+  const isGoogleSignupRoute = window.location.pathname === '/googlesignup';
+
   return (
     <>
-      <Navbar />
-      {userData && (
+      {!isGoogleSignupRoute && <Navbar />}
+      {userData && !isGoogleSignupRoute && (
         <>
           <ChatBot isOpen={chatIsOpen} />
           <div
@@ -57,13 +38,13 @@ const App = () => {
       )}
       <RankingProvider>
         <Routes>
-          {/* <Route path="profile" element={<Profile />} /> */}
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/contact" element={<Contact />} />
-          
+          <Route exact path="/googlesignup" element={<GoogleStPopUp/>} />
+
           {userData && userData.profession === "teacher/professor" && (<>
             <Route path="/testcreation" element={<TestCraetionForm />} />
             <Route path="/scoreupdator" element={<ScoreUpdater />} />
@@ -73,10 +54,7 @@ const App = () => {
                 <Route path="profile" element={<ProfileT />} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route element={<RouteGuard />}>
-                  <Route
-                    path=":inWhat/:course/:subject"
-                    element={<ViewCourse />}
-                  />
+                  <Route path=":inWhat/:course/:subject" element={<ViewCourse />}/>
                 </Route>
               </Route>
           </>)}
@@ -101,9 +79,9 @@ const App = () => {
           )}
         </Routes>
       </RankingProvider>
-      <Newsletter />
-      <Footer />
-      <ChatBot />
+      {!isGoogleSignupRoute && <Newsletter />}
+      {!isGoogleSignupRoute && <Footer />}
+      {!isGoogleSignupRoute && <ChatBot />}
     </>
   );
 };
