@@ -50,8 +50,8 @@ const GoogleStPopUp = () => {
 
       await axios.post(
         "https://edify-backend-service.onrender.com/auth/registerstudent",{
-          // "http://localhost:8800/auth/registerstudent/?googleAuth=true", {
-          ...register
+          // "http://localhost:8800/auth/registerstudent", {
+          ...register, googleAuth : true
         }
       );
 

@@ -34,10 +34,10 @@ const SignupStudent = () => {
 
     try {
       await axios.post(
-        "https://edify-backend-service.onrender.com/auth/registerstudent/?googleAuth=false",
-          // await axios.post("http://localhost:8800/auth/registerstudent/?googleAuth=false", 
+        "https://edify-backend-service.onrender.com/auth/registerstudent",
+          // "http://localhost:8800/auth/registerstudent", 
         {
-          ...register
+          ...register, googleAuth:false
         }
       );
 
