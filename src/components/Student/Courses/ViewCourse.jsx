@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import { useAuth } from "../../CommonComps/LoginContext";
 import SchoolCourse from "./SchoolCourse";
 import CollegeCourse from "./CollegeCourse";
 import { useRanking } from "../ProfileComponent/RankingContext";
+import apiurl from "../../utils";
 
 
 function Accordion(props) {
@@ -45,8 +45,7 @@ const ViewCourse = () => {
   
   // Function to trigger the Google Apps Script and get the JSON data
   const getFormUrls = () => {
-    fetch("https://edify-backend-service.onrender.com/api/fetchurl", {
-    // fetch("http://localhost:8800/api/fetchurl", {
+    fetch("/api/fetchurl", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -61,9 +60,8 @@ const ViewCourse = () => {
   };
 
   const getSchoolData = () => {
-    axios
-      .get("https://edify-backend-service.onrender.com/api/getschool")
-      // .get("http://localhost:8800/api/getschool")
+    apiurl
+      .get("/api/getschool")
       .then((response) => {
         const classData = response.data
           .filter((item) => item.classname === course)[0]
@@ -79,9 +77,8 @@ const ViewCourse = () => {
   };
 
   const getCollegeData = () => {
-    axios
-      .get("https://edify-backend-service.onrender.com/api/getcollege")
-      // .get("http://localhost:8800/api/getcollege")
+    apiurl
+      .get("/api/getcollege")
       .then((response) => {
         const courseData = response.data
           .filter((item) => item.coursename === course)[0]
@@ -108,8 +105,8 @@ const ViewCourse = () => {
 
     try {
       if (title && time) {
-        const response = await axios.put(
-          "https://edify-backend-service.onrender.com/updaterecentseen",
+        const response = await apiurl.put(
+          "/updaterecentseen",
           {
             studentId,
             clicked: `${inWhat} ${course} ${subject} ${title
@@ -140,8 +137,8 @@ const ViewCourse = () => {
     // console.log("videoCompleted", videoId, title, subject);
   
     // Send a request to your backend API to store completion data
-    axios
-      .put("https://edify-backend-service.onrender.com/storeCompletion", {
+    apiurl
+      .put("/storeCompletion", {
         videoId: videoId,
         userId: userData._id, // Assuming you have user data available
         title : `${subject} ${title.split(" ").join("")}`

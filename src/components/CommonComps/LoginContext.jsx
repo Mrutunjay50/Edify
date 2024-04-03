@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import apiurl from "../utils";
 
 const AuthContext = createContext();
 
@@ -31,9 +31,8 @@ export const AuthProvider = ({ children }) => {
 
       setToken(token);
 
-      axios
-        .get(`https://edify-backend-service.onrender.com/auth/getUser/${profession}`,{
-        // .get(`http://localhost:8800/auth/getUser/${profession}`,{
+      apiurl
+        .get(`/auth/getUser/${profession}`,{
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json;  charset=UTF-8'

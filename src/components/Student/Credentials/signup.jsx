@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { StudentRegister } from "../../../assets";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import GoogleSVG from "../../googleSVG";
+import apiurl from "../../utils";
 
 const SignupStudent = () => {
   const navigate = useNavigate();
@@ -33,9 +33,8 @@ const SignupStudent = () => {
   const handleSubmit = async (event) => {
 
     try {
-      await axios.post(
-        "https://edify-backend-service.onrender.com/auth/registerstudent",
-          // "http://localhost:8800/auth/registerstudent", 
+      await apiurl.post(
+        "/auth/registerstudent",
         {
           ...register, googleAuth:false
         }

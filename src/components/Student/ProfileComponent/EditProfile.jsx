@@ -8,9 +8,9 @@ import {
 import { FiChevronDown } from "react-icons/fi";
 import { useAuth } from "../../CommonComps/LoginContext.jsx";
 import { useState } from "react";
-import axios from "axios";
 import ProfileImage from "./ProfileImage.jsx";
 import { useRanking } from "./RankingContext.jsx";
+import apiurl from "../../utils.jsx";
 
 const EditProfile = () => {
   const { userData, setUserData } = useAuth();
@@ -80,8 +80,8 @@ const EditProfile = () => {
       }
       formData.append("_id", userData._id);
       formData.append("password", userData.password);
-      const response = await axios.put(
-        `https://edify-backend-service.onrender.com/update/${userData._id}`,
+      const response = await apiurl.put(
+        `/update/${userData._id}`,
         // `http://localhost:8800/update/${userData._id}`,
         formData,
         {
@@ -142,7 +142,7 @@ const EditProfile = () => {
                   <div className="shrink-0">
                     {userData.profilePicture ? (
                       <img
-                        src={`https://edify-backend-service.onrender.com/${userData.profilePicture}`}
+                        src={`/${userData.profilePicture}`}
                         alt="Profile Picture"
                         className="w-16 h-16 object-cover object-top rounded-full"
                       />

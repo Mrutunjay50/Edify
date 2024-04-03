@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useAuth } from "./LoginContext";
 import { login2 } from "../../assets";
 import { useGoogleLogin } from "@react-oauth/google";
 import GoogleSVG from "../googleSVG";
+import apiurl from "../utils";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -32,9 +32,8 @@ const Login = () => {
 
     try {
       // signin user
-      const response = await axios
-      // .post("http://localhost:8800/auth/loginstudent", {
-        .post("https://edify-backend-service.onrender.com/auth/loginstudent", {
+      const response = await apiurl
+        .post("/auth/loginstudent", {
         googleAccessToken: accessToken,
       });
       const {user, token} = response.data;
@@ -57,12 +56,11 @@ const Login = () => {
     try {
       var response;
       if(profession === 'student'){
-       response = await axios.post("https://edify-backend-service.onrender.com/auth/loginstudent", {
-        //  response = await axios.post("http://localhost:8800/auth/loginstudent", {
+       response = await apiurl.post("/auth/loginstudent", {
         ...login
       });
       }else{
-         response = await axios.post("http://localhost:8800/auth/loginteacher", {
+         response = await apiurl.post("/auth/loginteacher", {
         email,
         password,
         profession

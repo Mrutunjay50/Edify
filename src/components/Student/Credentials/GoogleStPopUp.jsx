@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import GoogleSVG from "../../googleSVG";
+import apiurl from "../../utils";
+import axios from "axios";
 
 const GoogleStPopUp = () => {
   const navigate = useNavigate();
@@ -48,9 +49,8 @@ const GoogleStPopUp = () => {
       });
 
 
-      await axios.post(
-        "https://edify-backend-service.onrender.com/auth/registerstudent",{
-          // "http://localhost:8800/auth/registerstudent", {
+      await apiurl.post(
+        "/auth/registerstudent",{
           ...register, googleAuth : true
         }
       );

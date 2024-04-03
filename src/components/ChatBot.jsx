@@ -17,7 +17,7 @@ const ChatBot = ({ isOpen }) => {
 
   const sendMessage = async () => {
     // Send user message to Node.js backend
-    const response = await fetch("https://edify-backend-service.onrender.com/api/dialogflow", {
+    const response = await fetch("/api/dialogflow", {
       method: "POST",
       body: JSON.stringify({ text: input }),
       headers: {

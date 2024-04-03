@@ -1,4 +1,5 @@
 import React from "react";
+import apiurl from '../../utils';
 
 const ProfileImageT = ({ userData, className }) => {
   return (
@@ -10,7 +11,7 @@ const ProfileImageT = ({ userData, className }) => {
               <div className="h-[15rem] w-[15rem] rounded-full shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
                 {userData.profilePicture ? (
                   <img
-                    src={`https://edify-backend-service.onrender.com/${userData.profilePicture}`}
+                    src={`${apiurl}/${userData.profilePicture}`}
                     alt="Profile Picture"
                     className="w-full h-full object-cover object-top rounded-full"
                   />

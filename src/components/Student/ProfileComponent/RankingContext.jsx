@@ -2,9 +2,9 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useAuth } from '../../CommonComps/LoginContext';
 import axios from 'axios';
 import io from 'socket.io-client';
+import apiurl from '../../utils';
 
-const socket = io.connect("https://edify-backend-service.onrender.com");
-// const socket = io.connect("http://localhost:8800");
+const socket = io.connect(`${apiurl}/`);
 
 const RankingContext = createContext();
 
@@ -18,8 +18,7 @@ export const RankingProvider = ({ children }) => {
 
   const getData = async (course) => {
     try {
-      const response = await axios.get('https://edify-backend-service.onrender.com/auth/leadershipScores', {params: {
-      // const response = await axios.get('http://localhost:8800/auth/leadershipScores', {params: {
+      const response = await apiurl.get('/auth/leadershipScores', {params: {
         inwhat: userData?.inWhat,
         course: course
       }});

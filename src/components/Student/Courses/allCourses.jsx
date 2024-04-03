@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Tilt } from "react-tilt";
 import Zoom from "@mui/material/Zoom";
-import axios from "axios";
 import { ToastContainer,toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "./Loading";
+import apiurl from "../../utils";
 
 const AllCourses = ({userData}) => {
     const [course, setCourse] = useState(false);
@@ -14,9 +14,8 @@ const AllCourses = ({userData}) => {
     
   
     const getSchoolData = () => {
-      axios
-        .get("https://edify-backend-service.onrender.com/api/getschool")
-        // .get("http://localhost:8800/api/getschool")
+      apiurl
+        .get("/api/getschool")
         .then((response) => {
           const clams = response.data.flatMap((item) =>
             item.subjects.map((subject) => subject.subjectname)
@@ -28,9 +27,8 @@ const AllCourses = ({userData}) => {
         });
     };
     const getCollegeData = () => {
-      axios
-        .get("https://edify-backend-service.onrender.com/api/getcollege")
-        // .get("http://localhost:8800/api/getcollege")
+      apiurl
+        .get("/api/getcollege")
         .then((response) => {
           const clams = response.data.flatMap((item) =>
             item.subjects.map((subject) => subject.name)

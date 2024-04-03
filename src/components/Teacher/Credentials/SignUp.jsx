@@ -4,6 +4,7 @@ import { useState } from "react";
 import { TeacherRegister } from "../../../assets";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import apiurl from '../../utils';
 
 
 
@@ -32,8 +33,7 @@ const SignUpTeacher = () => {
         cPass,
       } = register;
       try {
-        await axios.post("https://edify-backend-service.onrender.com/auth/registerteacher", {
-        // await axios.post("http://localhost:8800/auth/registerteacher", {
+        await apiurl.post("/auth/registerteacher", {
           username,
           fullname,
           classes,

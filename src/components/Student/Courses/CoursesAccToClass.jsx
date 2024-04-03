@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Tilt } from "react-tilt";
 import Zoom from "@mui/material/Zoom";
-import axios from "axios";
 import { useAuth } from "../../CommonComps/LoginContext";
 import { Link } from "react-router-dom";
 import { useCourse } from "./courseContext";
@@ -9,6 +8,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AllCourses from "./allCourses";
 import Loading from "./Loading";
+import apiurl from "../../utils";
 
 const CoursesAccToClass = () => {
   const [course, setCourse] = useState(false);
@@ -18,8 +18,8 @@ const CoursesAccToClass = () => {
   const { collegeData, schoolData } = useCourse();
 
   const getSchoolData = () => {
-    axios
-      .get("https://edify-backend-service.onrender.com/api/getschool")
+    apiurl
+      .get("/api/getschool")
       .then((response) => {
         const clams = response.data
           .filter((item) => item.classname === schoolData)
@@ -32,8 +32,8 @@ const CoursesAccToClass = () => {
   };
 
   const getCollegeData = () => {
-    axios
-      .get("https://edify-backend-service.onrender.com/api/getcollege")
+    apiurl
+      .get("/api/getcollege")
       .then((response) => {
         const clams = response.data
           .filter((item) => item.coursename === collegeData)

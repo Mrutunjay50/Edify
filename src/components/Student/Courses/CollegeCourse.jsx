@@ -3,8 +3,8 @@ import Tube from "./Youtube";
 import { useAuth } from "../../CommonComps/LoginContext";
 import LastSeen from "../ProfileComponent/LastSeen";
 import MyPDFComponent from "./MyPDF";
-import axios from "axios";
 import { useRanking } from "../ProfileComponent/RankingContext";
+import apiurl from "../../utils";
 
 const CollegeCourse = ({
   college,
@@ -32,7 +32,7 @@ const CollegeCourse = ({
   const handleClick = async (incrementValue) => {
     try {
       // Make a POST request to your backend route to update action scores
-      const response = await axios.post("https://edify-backend-service.onrender.com/updateActionScores",{
+      const response = await apiurl.post("/updateActionScores",{
         userId: userData._id,
         incrementVal : incrementValue
       },

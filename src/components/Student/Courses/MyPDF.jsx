@@ -1,8 +1,8 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
-import axios from "axios";
 import {saveAs} from 'file-saver'
+import apiurl from "../../utils";
 
 const MyPDFComponent = ({ subject, title, inwhat, handleClick }) => {
   const [documentVal, setDocumentVal] = useState({
@@ -18,9 +18,9 @@ const MyPDFComponent = ({ subject, title, inwhat, handleClick }) => {
 
   const createDownloadPDF = async () => {
     try {
-      await axios.post('https://edify-backend-service.onrender.com/create-pdf', documentVal);
+      await apiurl.post('/create-pdf', documentVal);
   
-      const response = await axios.get('https://edify-backend-service.onrender.com/fetch-pdf', { responseType: "blob" });
+      const response = await apiurl.get('/fetch-pdf', { responseType: "blob" });
       const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
       saveAs(pdfBlob, 'newPdf.pdf');
     } catch (error) {
