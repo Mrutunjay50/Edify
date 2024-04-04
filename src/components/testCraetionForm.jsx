@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import apiurl from "./utils.jsx"
 
 
 const QuestionSection = ({testData, handleAllChange, noOfQuestions}) =>{
@@ -86,8 +86,8 @@ const TestCraetionForm = () => {
   });
 
   const getSchoolData = () => {
-    axios
-      .get("http://localhost:8800/api/getschool")
+    apiurl
+      .get("/api/getschool")
       .then((response) => {
         const clams = response.data
           .filter((items) => items.classname === testData.classes)[0]
@@ -99,8 +99,8 @@ const TestCraetionForm = () => {
       });
   };
   const getCollegeData = () => {
-    axios
-      .get("http://localhost:8800/api/getcollege")
+    apiurl
+      .get("/api/getcollege")
       .then((response) => {
         const clams = response.data
           .filter((items) => items.coursename === testData.course)[0]
@@ -119,45 +119,22 @@ const TestCraetionForm = () => {
 
   const handleAllChange = (e) => {
     const { name, value } = e.target;
-
-    // If the field being changed is 'options', update the specific option by index
-    if (name.startsWith("options")) {
-      const index = parseInt(name.split(" ")[1], 10);
-      const newOptions = [...testData.options];
-      newOptions[index] = value;
-      setTestData((prevState) => ({
-        ...prevState,
-        options: newOptions,
-      }));
-    } else if (name === "correctOption") {
-      const correctOptionIndex = parseInt(value, 10);
-      setTestData((prevState) => ({
-        ...prevState,
-        correctOption: correctOptionIndex,
-      }));
-    } else {
-      // For other fields, update them directly
-      setTestData((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const { courseType, questionType, subject, classes, course, question, options, correctOption, shortAnswer, difficulty} = testData;
 
-    axios
-      .post("http://localhost:8800/createquestion", { courseType, questionType, subject, classes, course, question, options, correctOption, shortAnswer, difficulty,})
-      .then((response) => {
-        // Handle a successful response from the server, if needed
-        console.log("Data sent successfully", response.data);
-      })
-      .catch((error) => {
-        // Handle any errors that occur during the request
-        console.error("Error sending data", error);
-      });
+    // apiurl
+    //   .post("/createquestion", { courseType, questionType, subject, classes, course, question, options, correctOption, shortAnswer, difficulty,})
+    //   .then((response) => {
+    //     // Handle a successful response from the server, if needed
+    //     console.log("Data sent successfully", response.data);
+    //   })
+    //   .catch((error) => {
+    //     // Handle any errors that occur during the request
+    //     console.error("Error sending data", error);
+    //   });
     setTestData({
       courseType: "",
       questionType: "",
