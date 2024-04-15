@@ -6,7 +6,7 @@ import { Navbar, Home, About, CoursesMain, ViewCourse, StudyMaterial, Login, Sig
 import ProtectedRoute from "./ProtectedRoute";
 import RouteGuard from "./RouteGuard";
 import MainType from "./components/TypeMaster/MainType";
-import TestCraetionForm from "./components/testCraetionForm";
+import TestCreationSheet from "./components/QuestionCreation/TestCreationSheet";
 import { RankingProvider } from "./components/Student/ProfileComponent/RankingContext";
 import ScoreUpdater from "./components/testScoreUpdater";
 import { AccountSetting, EditProfile, LeaderBoard, Profile } from "./components/Student/ProfileComponent";
@@ -46,7 +46,7 @@ const App = () => {
           <Route exact path="/googlesignup" element={<GoogleStPopUp/>} />
 
           {userData && userData.profession === "teacher/professor" && (<>
-            <Route path="/testcreation" element={<TestCraetionForm />} />
+            <Route path="/testcreation" element={<TestCreationSheet />} />
             <Route path="/scoreupdator" element={<ScoreUpdater />} />
             <Route path="" element={<ProtectedRoute />}>
                 {/* <Route path="settings" element={<AccountSetting />} /> */}

@@ -27,29 +27,39 @@ export const AuthProvider = ({ children }) => {
       // Decode the token to get user data
       const decodedUserData = jwt_decode(token);
       console.log(decodedUserData);
-      const {userId, profession} = decodedUserData;
+      const { userId, profession } = decodedUserData;
 
       setToken(token);
 
-      apiurl
-        .get(`/auth/getUser/${profession}`,{
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json;  charset=UTF-8'
-          },
-          params: {
-            userId: userId,
-            profession : profession,
-          }
-        })
-        .then((response) => {
-          const {user} = response.data;
-          setUserData(user);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      let loginEndpoint;
+      if (profession === "student") {
+        loginEndpoint = "/auth/getUser/student";
+      } else if (profession === "teacher/professor") {
+        loginEndpoint = "/auth/getUser/teacher";
+      }
 
+      if (loginEndpoint) {
+        apiurl
+          .get(loginEndpoint, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json; charset=UTF-8'
+            },
+            params: {
+              userId: userId,
+              profession: profession,
+            }
+          })
+          .then((response) => {
+            const { user } = response.data;
+            setUserData(user);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      } else {
+        console.log("Invalid profession:", profession);
+      }
   
       // Check token expiration (optional)
       const expirationTimestamp = decodedUserData.exp * 1000; // Convert to milliseconds
