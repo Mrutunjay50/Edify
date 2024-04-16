@@ -7,6 +7,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import RouteGuard from "./RouteGuard";
 import MainType from "./components/TypeMaster/MainType";
 import TestCreationSheet from "./components/QuestionCreation/TestCreationSheet";
+import QuestionAns from "./components/QuestionAnswer/QuestionAns";
 import { RankingProvider } from "./components/Student/ProfileComponent/RankingContext";
 import ScoreUpdater from "./components/testScoreUpdater";
 import { AccountSetting, EditProfile, LeaderBoard, Profile } from "./components/Student/ProfileComponent";
@@ -47,6 +48,7 @@ const App = () => {
 
           {userData && userData.profession === "teacher/professor" && (<>
             <Route path="/testcreation" element={<TestCreationSheet />} />
+            <Route path="/test" element={<QuestionAns />} />
             <Route path="/scoreupdator" element={<ScoreUpdater />} />
             <Route path="" element={<ProtectedRoute />}>
                 {/* <Route path="settings" element={<AccountSetting />} /> */}

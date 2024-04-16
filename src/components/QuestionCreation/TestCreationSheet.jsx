@@ -50,7 +50,7 @@ const TestCreationSheet = () => {
 
   useEffect(() =>{
     setQuestions(Array(parseInt(noOfQuestions)).fill({ prompt: "", options: ["", "", "", ""], correctOption: "" }));
-    console.log(noOfQuestions, "changes")
+    // console.log(noOfQuestions, "changes")
   },[noOfQuestions])
 
   const handleAllChange = (e) => {
@@ -71,10 +71,23 @@ const TestCreationSheet = () => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Submitted questions:", questions);
-    // Handle form submission here, such as sending the questions to the server
+    try {
+      // Prepare the data to be sent to the server
+      const testDataToSend = {
+        ...testData,
+        questions: questions // Add the questions array to the testData
+      };
+
+      // console.log(testDataToSend);
+  
+      // Make the POST request using Axios
+      const response = await apiurl.post('/create-test', testDataToSend);
+      console.log("Test data sent successfully:", response.data);
+    } catch (error) {
+      console.error("Error sending test data:", error);
+    }
   };
 
   console.log(questions)

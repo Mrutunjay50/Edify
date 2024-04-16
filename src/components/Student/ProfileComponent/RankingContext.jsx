@@ -1,10 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useAuth } from '../../CommonComps/LoginContext';
-import axios from 'axios';
 import io from 'socket.io-client';
 import apiurl from '../../utils';
 
-const socket = io.connect(`${apiurl}/`);
+const socket = io.connect(`http://localhost:8800`);
 
 const RankingContext = createContext();
 
