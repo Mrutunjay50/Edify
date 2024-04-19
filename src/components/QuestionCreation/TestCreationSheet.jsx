@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import apiurl from "../utils.jsx"
-import MCQQuestion from "./MCQQuestion"
-
+import apiurl from "../utils.jsx";
+import MCQQuestion from "./MCQQuestion";
+import { useAuth } from "../CommonComps/LoginContext";
 
 const TestCreationSheet = () => {
-    const [school, setSchool] = useState([]);
+  const [school, setSchool] = useState([]);
+  const {userData, tokenId} = useAuth();
   const [college, setCollege] = useState([]);
   const [noOfQuestions, setNoOfQuestions] = useState(10);
   const [questions, setQuestions] = useState([]);
@@ -15,6 +16,8 @@ const TestCreationSheet = () => {
     classes: "",
     course: "",
   });
+
+  console.log(userData)
 
   const getSchoolData = () => {
     apiurl
@@ -29,6 +32,7 @@ const TestCreationSheet = () => {
         console.log(error);
       });
   };
+
   const getCollegeData = () => {
     apiurl
       .get("/api/getcollege")
@@ -48,19 +52,16 @@ const TestCreationSheet = () => {
     getCollegeData();
   }, [testData.classes, testData.course]);
 
-  useEffect(() =>{
+  useEffect(() => {
     setQuestions(Array(parseInt(noOfQuestions)).fill({ prompt: "", options: ["", "", "", ""], correctOption: "" }));
-    // console.log(noOfQuestions, "changes")
-  },[noOfQuestions])
+  }, [noOfQuestions]);
 
   const handleAllChange = (e) => {
     const { name, value } = e.target;
-    // If the field being changed is 'options', update the specific option by index
-      // For other fields, update them directly
-      setTestData((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
+    setTestData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const handleQuestionChange = (index, updatedQuestion) => {
@@ -73,34 +74,35 @@ const TestCreationSheet = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      // Prepare the data to be sent to the server
-      const testDataToSend = {
-        ...testData,
-        questions: questions // Add the questions array to the testData
-      };
-
-      // console.log(testDataToSend);
-  
-      // Make the POST request using Axios
-      const response = await apiurl.post('/create-test', testDataToSend);
-      console.log("Test data sent successfully:", response.data);
-    } catch (error) {
-      console.error("Error sending test data:", error);
+    if (userData && userData._id) {
+      try {
+        const testDataToSend = {
+          ...testData,
+          testBy: userData._id,
+          questions: questions
+        };
+        const response = await apiurl.post('/create-test', testDataToSend, {
+          headers: {
+            Authorization: `Bearer ${tokenId}`,
+            'Content-Type': 'application/json; charset=UTF-8'
+          }
+        });
+        console.log("Test data sent successfully:", response.data);
+      } catch (error) {
+        console.error("Error sending test data:", error);
+      }
     }
   };
-
-  console.log(questions)
   
+
   return (
-    <div className=" py-[3vh] px-8 bg-[#d0d7ff65] font-mono min-h-[100vh] overflow-y-scroll w-[700px] relative left-[25%] rounded-md mt-[14vh] mb-4 border-2">
-      <div className="text-[#313131] font-semibold text-center mb-4">
+    <div className="bg-purple-50 min-h-screen py-8 px-8 font-mono overflow-y-scroll w-[700px] relative left-[25%] rounded-md mt-[14vh] mb-4 border-2">
+      <div className="text-center font-semibold mb-4 text-purple-800">
         Create Test Form
       </div>
       <select
-        className=" rounded-md p-2 focus:outline-none text-[#2d2c2c] font-semibold mb-2 mr-4"
+        className="rounded-md p-2 focus:outline-none text-purple-800 font-semibold mb-2 mr-4"
         name="courseType"
-        id=""
         onChange={handleAllChange}
       >
         <option value="">choose</option>
@@ -108,7 +110,7 @@ const TestCreationSheet = () => {
         <option value="college">college</option>
       </select>
 
-      <select  className=" rounded-md p-2 focus:outline-none text-[#2d2c2c] font-semibold mb-2" name="questions" id="" onChange={(e) => setNoOfQuestions(e.target.value)}>
+      <select className="rounded-md p-2 focus:outline-none text-purple-800 font-semibold mb-2" name="questions" onChange={(e) => setNoOfQuestions(e.target.value)}>
         <option value="0">no. of questions</option>
         <option value="10">10</option>
         <option value="25">25</option>
@@ -117,11 +119,10 @@ const TestCreationSheet = () => {
       <br />
       {testData.courseType === "school" && (
         <div>
-          <label htmlFor="class">Choose Class : </label>
+          <label htmlFor="class" className="text-purple-800">Choose Class :</label>
           <select
-            className=" rounded-md p-2 focus:outline-none text-[#2d2c2c] font-semibold mb-2"
+            className="rounded-md p-2 focus:outline-none text-purple-800 font-semibold mb-2"
             name="classes"
-            id="class"
             onChange={handleAllChange}
           >
             <option value="">class</option>
@@ -133,11 +134,10 @@ const TestCreationSheet = () => {
             <option value="11">11th</option>
             <option value="12">12th</option>
           </select>
-          <label htmlFor="subject">Choose Subject : </label>
+          <label htmlFor="subject" className="text-purple-800">Choose Subject :</label>
           <select
-            className=" rounded-md p-2 focus:outline-none text-[#2d2c2c] font-semibold mb-2"
+            className="rounded-md p-2 focus:outline-none text-purple-800 font-semibold mb-2"
             name="subject"
-            id="subject"
             onChange={handleAllChange}
           >
             <option value="">Subject</option>
@@ -150,9 +150,8 @@ const TestCreationSheet = () => {
 
           <br />
           <select
-            className=" rounded-md p-2 focus:outline-none text-[#2d2c2c] font-semibold"
+            className="rounded-md p-2 focus:outline-none text-purple-800 font-semibold"
             name="questionType"
-            id=""
             onChange={handleAllChange}
           >
             <option value="">questionType</option>
@@ -163,11 +162,10 @@ const TestCreationSheet = () => {
       )}
       {testData.courseType === "college" && (
         <div className="">
-          <label htmlFor="course">Choose Course : </label>
+          <label htmlFor="course" className="text-purple-800">Choose Course :</label>
           <select
-            className=" rounded-md p-2 focus:outline-none text-[#2d2c2c] font-semibold"
+            className="rounded-md p-2 focus:outline-none text-purple-800 font-semibold"
             name="course"
-            id="course"
             onChange={handleAllChange}
           >
             <option value="">Course</option>
@@ -175,11 +173,10 @@ const TestCreationSheet = () => {
             <option value="Bsc">Bsc</option>
           </select>
           <br />
-          <label htmlFor="subject">Choose Subject : </label>
+          <label htmlFor="subject" className="text-purple-800">Choose Subject :</label>
           <select
-            className=" rounded-md p-2 focus:outline-none text-[#2d2c2c] font-semibold mb-2"
+            className="rounded-md p-2 focus:outline-none text-purple-800 font-semibold mb-2"
             name="subject"
-            id="subject"
             onChange={handleAllChange}
           >
             <option value="">Subject</option>
@@ -191,9 +188,8 @@ const TestCreationSheet = () => {
           </select>
           <br />
           <select
-            className=" rounded-md p-2 focus:outline-none text-[#2d2c2c] font-semibold"
+            className="rounded-md p-2 focus:outline-none text-purple-800 font-semibold"
             name="questionType"
-            id=""
             onChange={handleAllChange}
           >
             <option value="">questionType</option>
@@ -210,13 +206,13 @@ const TestCreationSheet = () => {
         ))}
         <button
           type="submit"
-          className="bg-blue-400 p-2 rounded-sm text-[14px] font-mono font-semibold text-white"
+          className="bg-purple-600 p-2 rounded-sm text-[14px] font-mono font-semibold text-white"
         >
           Create Test
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default TestCreationSheet
+export default TestCreationSheet;

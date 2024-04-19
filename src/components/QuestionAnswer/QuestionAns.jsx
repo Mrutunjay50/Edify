@@ -12,7 +12,6 @@ const QuestionAns = () => {
       try {
         const response = await apiurl.get("/get-alltest");
         setTestData(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error("Error fetching test data:", error);
       }
@@ -27,14 +26,15 @@ const QuestionAns = () => {
   }
 
   return (
-    <div className=" py-[3vh] font-playpen text-center px-8 font-mono min-h-[100vh] overflow-y-scroll w-[700px] relative left-[25%] rounded-md mt-[14vh] mb-4 border-2">
-      <h2 className="text-2xl font-bold mb-4">All Tests</h2>
-      <h3 className="text-xl font-semibold mb-4">{testData.subject}</h3>
-      {testData.map((question, index) => (
-        <Link to={`/testQuestions/${question._id}`} key={index} className="mb-3 rounded-sm px-3 py-1 bg-[#2f14a9ad] flex justify-start font-playpen text-[#ffffff] items-center">
-          <p className="mb-2">{`${question.questionType} questions on ${question.classes}${question.course}  ${question.subject}`}</p>
-        </Link>
-      ))}
+    <div className="bg-purple-50 min-h-screen py-8 font-sans mt-[12vh]">
+      <div className="container mx-auto w-[700px] p-8 bg-white rounded-lg shadow-md overflow-scroll overflow-x-hidden min-h-[100vh]">
+        <h2 className="text-2xl font-bold text-center mb-4 text-purple-800">All Tests</h2>
+        {testData.map((question, index) => (
+          <Link to={`/testQuestions/${question._id}`} key={index} className="block mb-3 rounded-sm px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white">
+            <p>{`${question.questionType} questions on ${question.classes}${question.course} ${question.subject}`}</p>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

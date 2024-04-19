@@ -1,36 +1,36 @@
 import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 import apiurl from "../utils.jsx";
-import { useParams } from "react-router-dom";
 
 const TestPage = ({ teacher }) => {
-  // State variables
+  const { id } = useParams();
   const [testData, setTestData] = useState(null);
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
-  const { id } = useParams();
 
-  console.log(answers);
-
-  // Function to fetch test data
   useEffect(() => {
+    let isMounted = true;
     const fetchTestData = async () => {
-      if (id) {
-        try {
-          const response = await apiurl.get(`/get-one-test/${id}`);
+      try {
+        const response = await apiurl.get(`/get-one-test/${id}`);
+        if (isMounted) {
           setTestData(response.data);
-          console.log(response.data);
-        } catch (error) {
-          console.error("Error fetching test data:", error);
         }
+      } catch (error) {
+        console.error("Error fetching test data:", error);
       }
     };
 
-    fetchTestData();
-  }, []);
+    if (id) {
+      fetchTestData();
+    }
 
-  // Function to handle answer submission
+    return () => {
+      isMounted = false;
+    };
+  }, [id]);
+
   const handleSubmit = () => {
-    // Calculate the score
     let newScore = 0;
     testData.questions.forEach((question, index) => {
       if (answers[index] === question.correctOption) {
@@ -40,7 +40,6 @@ const TestPage = ({ teacher }) => {
     setScore(newScore);
   };
 
-  // Function to handle selecting an answer
   const handleAnswerSelect = (index, option) => {
     setAnswers((prevAnswers) => ({
       ...prevAnswers,
@@ -48,47 +47,68 @@ const TestPage = ({ teacher }) => {
     }));
   };
 
-  // Render loading if test data is not yet fetched
   if (!testData) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">Test Page</h2>
-      <h3 className="text-xl font-semibold mb-4">{testData.subject}</h3>
-      {testData.questions.map((question, index) => (
-        <div key={index} className="mb-6">
-          <p className="mb-2">{question.prompt}</p>
-          {question.options.map((option, optionIndex) => (
-            <label key={optionIndex} className="block mb-2">
-              <input
-                type="radio"
-                name={`question_${index}`}
-                value={option}
-                onChange={() =>
-                  handleAnswerSelect(index, `option${optionIndex + 1}`)
-                }
-                className="mr-2"
-              />
-              {option}
-            </label>
+    <div className="bg-purple-50 min-h-screen py-8 font-sans">
+      <div className="container mx-auto w-[700px] p-8 mt-[12vh] bg-white rounded-lg shadow-md">
+        <h2 className="text-3xl font-bold text-center mb-8 text-purple-800">
+          Test Page
+        </h2>
+        <h3 className="text-2xl font-semibold mb-8 text-purple-800">
+          {testData.subject} {testData.course}
+          {testData.classes}
+        </h3>
+        {testData.questions
+          .filter((question) => question.prompt.trim() !== "") // Filter out questions with empty prompts
+          .map((question, index) => (
+            <div key={index} className="mb-6">
+              <p className="text-lg mb-4 text-purple-900">
+                <b>{index + 1}.</b> {question.prompt}
+              </p>
+              {question.options.map((option, optionIndex) => (
+                <label
+                  key={optionIndex}
+                  className="block mb-2 pl-5 text-purple-700 cursor-pointer bg-purple-50 rounded-sm py-[2px]"
+                >
+                  <input
+                    type="radio"
+                    name={`question_${index}`}
+                    value={option}
+                    onChange={() =>
+                      handleAnswerSelect(index, `option${optionIndex + 1}`)
+                    }
+                    className="mr-2 cursor-pointer"
+                  />
+                  {option}
+                </label>
+              ))}
+            </div>
           ))}
-        </div>
-      ))}
-      {teacher ? (
-        ""
-      ) : (
-        <>
-          <button
-            onClick={handleSubmit}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            Submit Answers
-          </button>
-          <p className="mt-4">Score: {score}</p>
-        </>
-      )}
+        {!teacher && (
+          <div className="text-center">
+            <button
+              onClick={handleSubmit}
+              className="bg-purple-600 text-white px-6 py-3 rounded hover:bg-purple-700 focus:outline-none"
+            >
+              Submit Answers
+            </button>
+            <p className="mt-4 text-lg text-purple-800">Score: {score}</p>
+          </div>
+        )}
+        {teacher && (
+          <div className="text-center mt-8">
+            <Link
+              to={`/edit-test/${id}`}
+              className="bg-purple-600 text-white px-6 py-3 rounded hover:bg-purple-700 focus:outline-none"
+            >
+              Edit Test
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
