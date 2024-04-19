@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from "react";
 import apiurl from "../utils.jsx";
+import { useParams } from "react-router-dom";
 
-const TestPage = () => {
+const TestPage = ({ teacher }) => {
   // State variables
   const [testData, setTestData] = useState(null);
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
+  const { id } = useParams();
+
+  console.log(answers);
 
   // Function to fetch test data
   useEffect(() => {
     const fetchTestData = async () => {
-      try {
-        const response = await apiurl.get("/get-alltest");
-        setTestData(response.data);
-      } catch (error) {
-        console.error("Error fetching test data:", error);
+      if (id) {
+        try {
+          const response = await apiurl.get(`/get-one-test/${id}`);
+          setTestData(response.data);
+          console.log(response.data);
+        } catch (error) {
+          console.error("Error fetching test data:", error);
+        }
       }
     };
 
@@ -59,7 +66,9 @@ const TestPage = () => {
                 type="radio"
                 name={`question_${index}`}
                 value={option}
-                onChange={() => handleAnswerSelect(index, option)}
+                onChange={() =>
+                  handleAnswerSelect(index, `option${optionIndex + 1}`)
+                }
                 className="mr-2"
               />
               {option}
@@ -67,13 +76,19 @@ const TestPage = () => {
           ))}
         </div>
       ))}
-      <button
-        onClick={handleSubmit}
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-      >
-        Submit Answers
-      </button>
-      <p className="mt-4">Score: {score}</p>
+      {teacher ? (
+        ""
+      ) : (
+        <>
+          <button
+            onClick={handleSubmit}
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          >
+            Submit Answers
+          </button>
+          <p className="mt-4">Score: {score}</p>
+        </>
+      )}
     </div>
   );
 };
