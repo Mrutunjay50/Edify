@@ -52,12 +52,12 @@ const TestPage = ({ teacher }) => {
   }
 
   return (
-    <div className="bg-purple-50 min-h-screen py-8 font-sans">
+    <div className="bg-[#E5E5E5] min-h-screen py-8 font-sans font-playpen">
       <div className="container mx-auto w-[700px] p-8 mt-[12vh] bg-white rounded-lg shadow-md">
-        <h2 className="text-3xl font-bold text-center mb-8 text-purple-800">
+        <h2 className="text-xl font-bold text-center mb-8 text-[#444444]">
           Test Page
         </h2>
-        <h3 className="text-2xl font-semibold mb-8 text-purple-800">
+        <h3 className="text-xl font-semibold mb-8 text-[#444444]">
           {testData.subject} {testData.course}
           {testData.classes}
         </h3>
@@ -65,13 +65,13 @@ const TestPage = ({ teacher }) => {
           .filter((question) => question.prompt.trim() !== "") // Filter out questions with empty prompts
           .map((question, index) => (
             <div key={index} className="mb-6">
-              <p className="text-lg mb-4 text-purple-900">
+              <p className="text-lg mb-4 text-[#444444]">
                 <b>{index + 1}.</b> {question.prompt}
               </p>
               {question.options.map((option, optionIndex) => (
                 <label
                   key={optionIndex}
-                  className="block mb-2 pl-5 text-purple-700 cursor-pointer bg-purple-50 rounded-sm py-[2px]"
+                  className="block mb-2 pl-5 text-[#444444] cursor-pointer bg-[#F5F5F5] rounded-sm py-[2px]"
                 >
                   <input
                     type="radio"
@@ -91,18 +91,18 @@ const TestPage = ({ teacher }) => {
           <div className="text-center">
             <button
               onClick={handleSubmit}
-              className="bg-purple-600 text-white px-6 py-3 rounded hover:bg-purple-700 focus:outline-none"
+              className="bg-[#444444] text-white px-6 py-3 rounded hover:bg-[#5D89A8] focus:outline-none"
             >
               Submit Answers
             </button>
-            <p className="mt-4 text-lg text-purple-800">Score: {score}</p>
+            <p className="mt-4 text-lg text-[#444444]">Score: {score}</p>
           </div>
         )}
         {teacher && (
           <div className="text-center mt-8">
             <Link
               to={`/edit-test/${id}`}
-              className="bg-purple-600 text-white px-6 py-3 rounded hover:bg-purple-700 focus:outline-none"
+              className="bg-[#444444] text-white px-6 py-3 rounded hover:bg-[#5D89A8] focus:outline-none"
             >
               Edit Test
             </Link>

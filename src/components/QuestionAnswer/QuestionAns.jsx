@@ -26,11 +26,15 @@ const QuestionAns = () => {
   }
 
   return (
-    <div className="bg-purple-50 min-h-screen py-8 font-sans mt-[12vh]">
-      <div className="container mx-auto w-[700px] p-8 bg-white rounded-lg shadow-md overflow-scroll overflow-x-hidden min-h-[100vh]">
-        <h2 className="text-2xl font-bold text-center mb-4 text-purple-800">All Tests</h2>
+    <div className="bg-[#D9D5C6] min-h-screen py-8 font-sans mt-[12vh] font-playpen">
+      <div className="container mx-auto w-[700px] p-8 bg-[#5D89A8] rounded-lg shadow-md overflow-scroll overflow-x-hidden min-h-[100vh]">
+        <h2 className="text-2xl font-bold text-center mb-4 text-[#263B66]">All Tests</h2>
         {testData.map((question, index) => (
-          <Link to={`/testQuestions/${question._id}`} key={index} className="block mb-3 rounded-sm px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white">
+          <Link
+            to={`/testQuestions/${question._id}`}
+            key={index}
+            className="block mb-3 rounded-sm px-3 py-2 bg-[#e484446f] hover:bg-[#263B66] text-white"
+          >
             <p>{`${question.questionType} questions on ${question.classes}${question.course} ${question.subject}`}</p>
           </Link>
         ))}

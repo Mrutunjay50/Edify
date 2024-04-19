@@ -140,7 +140,11 @@ const Navbar = () => {
               <>
                 <div className="text-md cursor-pointer transition-all hover:scale-105">
                   {/* <Link to="/testcreation">Create Test</Link> */}
-                  <Link to="/test">Create Test</Link>
+                  <Link to="/testCreation">Create Test</Link>
+                </div>
+                <div className="text-md cursor-pointer transition-all hover:scale-105">
+                  {/* <Link to="/testcreation">Create Test</Link> */}
+                  <Link to="/test">All Tests</Link>
                 </div>
                 <div className="text-md cursor-pointer transition-all hover:scale-105">
                   <Link to="/scoreupdator">Update Score</Link>
