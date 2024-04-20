@@ -49,7 +49,7 @@ const App = () => {
 
           {userData && userData.profession === "teacher/professor" && (<>
             <Route path="/testcreation" element={<TestCreationSheet />} />
-            <Route path="/test" element={<QuestionAns />} />
+            <Route path="/test" element={<QuestionAns teacher={true}/>} />
             <Route path="/testQuestions/:id" element={<TestPage teacher={true} />} />
             <Route path="/scoreupdator" element={<ScoreUpdater />} />
             <Route path="" element={<ProtectedRoute />}>
@@ -66,6 +66,8 @@ const App = () => {
             <>
               <Route path="/courses" element={<CoursesMain />} />
               <Route path="/studymaterial" element={<StudyMaterial />} />
+              <Route path="/tests" element={<QuestionAns teacher={false} />} />
+              <Route path="/testQuestions/:id" element={<TestPage teacher={false} />} />
               <Route path="" element={<ProtectedRoute />}>
                 <Route path="typechecker" element={<MainType />} />
                 <Route path="settings" element={<AccountSetting />} />

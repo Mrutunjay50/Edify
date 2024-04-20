@@ -7,6 +7,8 @@ const TestCreationSheet = () => {
   const [school, setSchool] = useState([]);
   const {userData, tokenId} = useAuth();
   const [college, setCollege] = useState([]);
+  const [cChapter, setCChapter] = useState([]);
+  const [sChapter, setSChapter] = useState([]);
   const [noOfQuestions, setNoOfQuestions] = useState(10);
   const [questions, setQuestions] = useState([]);
   const [testData, setTestData] = useState({
@@ -16,8 +18,6 @@ const TestCreationSheet = () => {
     classes: "",
     course: "",
   });
-
-  console.log(userData)
 
   const getSchoolData = () => {
     apiurl
@@ -93,6 +93,8 @@ const TestCreationSheet = () => {
       }
     }
   };
+
+  console.log(school, college, cChapter);
   
 
   return (
