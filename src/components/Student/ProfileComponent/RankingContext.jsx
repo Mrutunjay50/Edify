@@ -3,7 +3,8 @@ import { useAuth } from '../../CommonComps/LoginContext';
 import io from 'socket.io-client';
 import apiurl from '../../utils';
 
-const socket = io.connect(`http://localhost:8800`);
+// const socket = io.connect(`http://localhost:8800`);
+const socket = io.connect(`https://edify-backend-service.onrender.com`);
 
 const RankingContext = createContext();
 

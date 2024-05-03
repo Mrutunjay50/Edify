@@ -3,7 +3,7 @@ const url1 = "https://edify-backend-service.onrender.com";
 const url2 = "http://localhost:8800"
 
 const apiurl = axios.create({
-    baseURL : `${url2}`,
+    baseURL : `${url1}`,
 });
 
 export default apiurl;
