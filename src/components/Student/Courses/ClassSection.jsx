@@ -19,7 +19,7 @@ function ClassSecComp() {
 
   function getSchoolData() {
     apiurl
-      .get("/api/getschool")
+      .get("/api/courses/get-school")
       .then((response) => {
         const classNames = response.data.flatMap((item) => item.classname);
         setSchool(classNames);
@@ -31,8 +31,8 @@ function ClassSecComp() {
 
   function getCollegeData() {
     apiurl
-      .get("/api/getcollege")
-      // .get("http://localhost:8800/api/getcollege")
+      .get("/api/courses/get-college")
+      // .get("http://localhost:8800/api/courses/get-college")
       .then((response) => {
         const courseNames = response.data.flatMap((item) => item.coursename);
         setCollege(courseNames);

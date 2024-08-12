@@ -15,7 +15,7 @@ const AllCourses = ({userData}) => {
   
     const getSchoolData = () => {
       apiurl
-        .get("/api/getschool")
+        .get("/api/courses/get-school")
         .then((response) => {
           const clams = response.data.flatMap((item) =>
             item.subjects.map((subject) => subject.subjectname)
@@ -28,7 +28,7 @@ const AllCourses = ({userData}) => {
     };
     const getCollegeData = () => {
       apiurl
-        .get("/api/getcollege")
+        .get("/api/courses/get-college")
         .then((response) => {
           const clams = response.data.flatMap((item) =>
             item.subjects.map((subject) => subject.name)

@@ -33,7 +33,7 @@ const SignUpTeacher = () => {
         cPass,
       } = register;
       try {
-        await apiurl.post("/auth/registerteacher", {
+        await apiurl.post("/api/auth/register-user", {
           username,
           fullname,
           classes,

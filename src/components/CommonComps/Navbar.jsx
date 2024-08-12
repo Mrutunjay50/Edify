@@ -126,7 +126,7 @@ const Navbar = () => {
             <div className="text-md cursor-pointer transition-all hover:scale-105 tablet:-ml-10">
               <Link to="/about">About us</Link>
             </div>
-            {userData && userData.profession === "student" && (
+            {userData && userData.profession === "STUDENT" && (
               <>
                 <div className="text-md cursor-pointer transition-all hover:scale-105">
                   <Link to="/tests">All Tests</Link>
@@ -139,7 +139,7 @@ const Navbar = () => {
                 </div>
               </>
             )}
-            {userData && userData.profession === "teacher/professor" && (
+            {userData && userData.profession === "TEACHER" && (
               <>
                 <div className="text-md cursor-pointer transition-all hover:scale-105">
                   <Link to="/testcreation">Create Test</Link>

@@ -15,7 +15,7 @@ const ScoreUpdater = () => {
 
   const getSchoolData = () => {
     axios
-      .get("/api/getschool")
+      .get("/api/courses/get-school")
       .then((response) => {
         const clams = response.data
           .filter((items) => items.classname === scoreData?.course)[0]
@@ -31,7 +31,7 @@ const ScoreUpdater = () => {
 
   const getCollegeData = () => {
     axios
-      .get("/api/getcollege")
+      .get("/api/courses/get-college")
       .then((response) => {
         const clams = response.data
           .filter((items) => items.coursename === scoreData?.course)[0]

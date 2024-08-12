@@ -15,6 +15,7 @@ const GoogleStPopUp = () => {
     collegestudent: "",
     email: "",
     profilePicture : "",
+    profession : "student"
   });
 
   const handleRegister = (e) => {
@@ -46,11 +47,12 @@ const GoogleStPopUp = () => {
         fullname: name,
         profilePicture: picture,
         email: email,
+        profession : "student",
       });
 
 
       await apiurl.post(
-        "/auth/registerstudent",{
+        "/api/auth/register-user",{
           ...register, googleAuth : true
         }
       );

@@ -61,7 +61,7 @@ const ViewCourse = () => {
 
   const getSchoolData = () => {
     apiurl
-      .get("/api/getschool")
+      .get("/api/courses/get-school")
       .then((response) => {
         const classData = response.data
           .filter((item) => item.classname === course)[0]
@@ -78,7 +78,7 @@ const ViewCourse = () => {
 
   const getCollegeData = () => {
     apiurl
-      .get("/api/getcollege")
+      .get("/api/courses/get-college")
       .then((response) => {
         const courseData = response.data
           .filter((item) => item.coursename === course)[0]

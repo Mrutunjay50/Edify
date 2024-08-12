@@ -34,7 +34,7 @@ const SignupStudent = () => {
 
     try {
       await apiurl.post(
-        "/auth/registerstudent",
+        "/api/auth/register-user",
         {
           ...register, googleAuth:false
         }

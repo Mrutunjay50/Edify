@@ -21,7 +21,7 @@ const TestCreationSheet = () => {
 
   const getSchoolData = () => {
     apiurl
-      .get("/api/getschool")
+      .get("/api/courses/get-school")
       .then((response) => {
         const clams = response.data
           .filter((items) => items.classname === testData.classes)[0]
@@ -35,7 +35,7 @@ const TestCreationSheet = () => {
 
   const getCollegeData = () => {
     apiurl
-      .get("/api/getcollege")
+      .get("/api/courses/get-college")
       .then((response) => {
         const clams = response.data
           .filter((items) => items.coursename === testData.course)[0]

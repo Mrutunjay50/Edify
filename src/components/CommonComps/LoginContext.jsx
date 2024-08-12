@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
         break;
       }
     }
+    token = localStorage.getItem("edify_token")
   
     if (token) {
       // Decode the token to get user data
@@ -30,6 +31,7 @@ export const AuthProvider = ({ children }) => {
       const { userId, profession } = decodedUserData;
 
       setToken(token);
+      localStorage.setItem("edify_token", token);
 
       let loginEndpoint;
       if (profession === "student") {
@@ -68,6 +70,7 @@ export const AuthProvider = ({ children }) => {
       if (currentTimestamp > expirationTimestamp) {
         // Token has expired, you may want to redirect to the login page
         localStorage.removeItem("isAuthenticated");
+        localStorage.removeItem("edify_token");
         setUserData(null);
         navigate("/login");
       }

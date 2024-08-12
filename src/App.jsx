@@ -47,7 +47,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route exact path="/googlesignup" element={<GoogleStPopUp/>} />
 
-          {userData && userData.profession === "teacher/professor" && (<>
+          {userData && userData.profession === "TEACHER" && (<>
             <Route path="/testcreation" element={<TestCreationSheet />} />
             <Route path="/test" element={<QuestionAns teacher={true}/>} />
             <Route path="/testQuestions/:id" element={<TestPage teacher={true} />} />
@@ -62,7 +62,7 @@ const App = () => {
                 </Route>
               </Route>
           </>)}
-          {userData && userData.profession === "student" && (
+          {userData && userData.profession === "STUDENT" && (
             <>
               <Route path="/courses" element={<CoursesMain />} />
               <Route path="/studymaterial" element={<StudyMaterial />} />

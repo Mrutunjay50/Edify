@@ -19,7 +19,7 @@ const CoursesAccToClass = () => {
 
   const getSchoolData = () => {
     apiurl
-      .get("/api/getschool")
+      .get("/api/courses/get-school")
       .then((response) => {
         const clams = response.data
           .filter((item) => item.classname === schoolData)
@@ -33,7 +33,7 @@ const CoursesAccToClass = () => {
 
   const getCollegeData = () => {
     apiurl
-      .get("/api/getcollege")
+      .get("/api/courses/get-college")
       .then((response) => {
         const clams = response.data
           .filter((item) => item.coursename === collegeData)

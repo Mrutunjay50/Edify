@@ -33,7 +33,7 @@ const Login = () => {
     try {
       // signin user
       const response = await apiurl
-        .post("/auth/loginstudent", {
+        .post("/api/auth/login-user", {
         googleAccessToken: accessToken,
       });
       const {user, token} = response.data;
@@ -56,11 +56,11 @@ const Login = () => {
     try {
       var response;
       if(profession === 'student'){
-       response = await apiurl.post("/auth/loginstudent", {
+       response = await apiurl.post("/api/auth/login-user", {
         ...login
       });
       }else{
-         response = await apiurl.post("/auth/loginteacher", {
+         response = await apiurl.post("/api/auth/login-user", {
         email,
         password,
         profession
@@ -70,6 +70,7 @@ const Login = () => {
       console.log(user);
       setUserData(user);
       setToken(token);
+      localStorage.setItem("edify_token", token);
 
       // Store the token in local storage
       //   localStorage.setItem("jwt", token);
